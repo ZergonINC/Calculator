@@ -1,0 +1,123 @@
+﻿<Window x:Class="Calculator2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator2" 
+        xmlns:viewmodel="clr-namespace:Calculator2.ViewModel"
+        Title="Calculator" 
+        Height="325" 
+        Width="225" 
+        WindowStyle="SingleBorderWindow" 
+        WindowState="Normal" 
+        ResizeMode="NoResize"
+        mc:Ignorable="d">
+
+    <Window.DataContext>
+        <viewmodel:MainViewModel />
+    </Window.DataContext>
+    
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Menu>
+                <MenuItem Header="Вид">
+                    <CheckBox Content="Вычисление даты"/>
+                    <CheckBox Content="Вычисление валют"/>
+                </MenuItem>
+            </Menu>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <TextBox
+                Margin="13,8,13,6"
+                BorderThickness="1"  
+                BorderBrush="Black" 
+                Text="{Binding Path=Display}" 
+                HorizontalContentAlignment="Right" 
+                VerticalContentAlignment="Bottom" 
+                TextWrapping="Wrap" 
+                FontFamily="Microsoft YaHei UI" 
+                FontSize="22" 
+                FontWeight="Normal" 
+                IsReadOnly="True"/>
+
+            <TextBlock 
+            Height="24" 
+            Text="{Binding Path=SecondDisplay}" 
+            TextWrapping="Wrap" 
+            VerticalAlignment="Bottom" 
+            Margin="13,0,36,38" 
+            TextAlignment="Right"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+
+            <!--#region Numbers buttons -->
+            <Button Margin ="3" Content="1" Command="{Binding NumberCommand}" CommandParameter="1" Grid.Column="1" Grid.Row="2"/>
+            <Button Margin ="3" Content="2" Command="{Binding NumberCommand}" CommandParameter="2" Grid.Column="2" Grid.Row="2"/>
+            <Button Margin ="3" Content="3" Command="{Binding NumberCommand}" CommandParameter="3" Grid.Column="3" Grid.Row="2"/>
+            <Button Margin ="3" Content="4" Command="{Binding NumberCommand}" CommandParameter="4" Grid.Column="1" Grid.Row="3"/>
+            <Button Margin ="3" Content="5" Command="{Binding NumberCommand}" CommandParameter="5" Grid.Column="2" Grid.Row="3"/>
+            <Button Margin ="3" Content="6" Command="{Binding NumberCommand}" CommandParameter="6" Grid.Column="3" Grid.Row="3"/>
+            <Button Margin ="3" Content="7" Command="{Binding NumberCommand}" CommandParameter="7" Grid.Column="1" Grid.Row="4"/>
+            <Button Margin ="3" Content="8" Command="{Binding NumberCommand}" CommandParameter="8" Grid.Column="2" Grid.Row="4"/>
+            <Button Margin ="3" Content="9" Command="{Binding NumberCommand}" CommandParameter="9" Grid.Column="3" Grid.Row="4"/>
+            <Button Margin ="3" Content="," Command="{Binding NumberCommand}" CommandParameter="," Grid.Column="3" Grid.Row="5"/>
+            <Button Margin ="3" Content="0" Command="{Binding NumberCommand}" CommandParameter="0" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"/>
+            <!--#endregion-->
+
+            <!--#region Arithmetic buttons -->
+            <Button Margin ="3" Content="±" Grid.Column="4" Grid.Row="1" Command="{Binding ArithmeticCommand}" CommandParameter="±"/>
+            <Button Margin ="3" Content="/" Grid.Column="4" Grid.Row="2" Command="{Binding ArithmeticCommand}" CommandParameter="/"/>
+            <Button Margin ="3" Content="*" Grid.Column="4" Grid.Row="3" Command="{Binding ArithmeticCommand}" CommandParameter="*"/>
+            <Button Margin ="3" Content="-" Grid.Column="4" Grid.Row="4" Command="{Binding ArithmeticCommand}" CommandParameter="-"/>
+            <Button Margin ="3" Content="+" Grid.Column="4" Grid.Row="5" Command="{Binding ArithmeticCommand}" CommandParameter="+"/>
+            <Button Margin ="3" Content="√" Grid.Column="5" Grid.Row="1" Command="{Binding ArithmeticCommand}" CommandParameter="√"/>
+            <Button Margin ="3" Content="x^y" Grid.Column="5" Grid.Row="2" Command="{Binding ArithmeticCommand}" CommandParameter="x^y"/>
+            <Button Margin ="3" Content="1/x" Grid.Column="5" Grid.Row="3" Command="{Binding ArithmeticCommand}" CommandParameter="1/x"/>
+            <Button Margin ="3" Content="=" Grid.Column="5" Grid.Row="4" Grid.RowSpan="2" Command="{Binding EqualsCommand}"/>
+            <!--#endregion-->
+
+            <!--#region Memory buttons -->
+            <Button Margin ="3" Content="MC" Grid.Column="1" Grid.Row="0" Command="{Binding MemoryClearCommand}"/>
+            <Button Margin ="3" Content="MR" Grid.Column="2" Grid.Row="0" Command="{Binding MemoryReadCommand}"/>
+            <Button Margin ="3" Content="MS" Grid.Column="3" Grid.Row="0" Command="{Binding MemorySaveCommand}"/>
+            <Button Margin ="3" Content="M+" Grid.Column="4" Grid.Row="0" Command="{Binding MemoryPlusCommand}"/>
+            <Button Margin ="3" Content="M-" Grid.Column="5" Grid.Row="0" Command="{Binding MemoryMinusCommand}"/>
+            <!--#endregion-->
+
+            <!--#region Clear buttons -->
+            <Button Margin ="3" Content="C" Grid.Column="3" Grid.Row="1"  Command="{Binding ClearCommand}"/>
+            <Button Margin ="3" Content="CE" Grid.Column="2" Grid.Row="1" Command="{Binding CleanEntryCommand}"/>
+            <Button Margin ="3" Content="←"  Grid.Column="1" Grid.Row="1" Command="{Binding BackspaceCommand}"/>
+            <!--#endregion-->
+        </Grid>
+
+    </Grid>
+</Window>
