@@ -1,4 +1,6 @@
-﻿using Calculator2.Model;
+﻿using Calculator2.Interfaces;
+using Calculator2.Model;
+using Calculator2.Model.Operations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +12,7 @@ namespace Calculator2.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-
-        private string _display;
+        private string _display = "0";
 
         public string Display
         {
@@ -36,15 +37,37 @@ namespace Calculator2.ViewModel
             }
         }
 
+        BaseCalculatorModel _calculator;
+
+        NumberValidator numberValidator = new();
+
+        ParametrizedCalculatorModel parametrized = new();
+
+        CalculatorModel notparametezer = new();
+
+        public MainViewModel(BaseCalculatorModel calculator)
+        {
+            this._calculator = calculator;
+        }
+
+
         #region Base commands
         public ICommand NumberCommand
         {
             get
             {
-                return new RelayCommand((obj) =>
+                return new RelayCommand((parametr) =>
                 {
-                    Display = "0";
-                });
+                    var number = parametr.ToString();
+
+                    number = numberValidator.Check(number) ?
+                     numberValidator.GetValidValue(number) :
+                     number.Remove(number.Length - 1);
+
+                    parametrized.SetOp(new Number(_calculator)).Do(number);
+
+                    Display += number;
+                }, (parametr) => parametrized.SetOp(new Number(_calculator)).CanDo());
             }
         }
 
@@ -52,10 +75,13 @@ namespace Calculator2.ViewModel
         {
             get
             {
-                return new RelayCommand((obj) =>
+                return new RelayCommand((parametr) =>
                 {
-                    
-                });
+                    var sign = parametr.ToString();
+                    parametrized.SetOp(new Sign(_calculator)).Do(sign);
+
+                    Display += " " + sign + " ";
+                }, (parametr) => parametrized.SetOp(new Sign(_calculator)).CanDo());
             }
         }
 
@@ -63,10 +89,12 @@ namespace Calculator2.ViewModel
         {
             get
             {
-                return new RelayCommand((obj) =>
+                return new RelayCommand((parametr) =>
                 {
+                    notparametezer.SetOp(new Equally(_calculator)).Do();
 
-                });
+                    Display = _calculator.Result;
+                }, (parametr) => notparametezer.SetOp(new Equally(_calculator)).CanDo());
             }
         }
         #endregion
@@ -76,10 +104,10 @@ namespace Calculator2.ViewModel
         {
             get
             {
-                return new RelayCommand((obj) =>
+                return new RelayCommand((parametr) =>
                 {
-
-                });
+                    notparametezer.SetOp(new Clear(_calculator)).Do();
+                }, (parametr) => notparametezer.SetOp(new Clear(_calculator)).CanDo());
             }
         }
 
