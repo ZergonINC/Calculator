@@ -10,6 +10,6 @@ namespace Calculator2.Interfaces
     {
         bool CanDo();
 
-        void Do(string parametr);
+        string Do(string parametr);
     }
 }

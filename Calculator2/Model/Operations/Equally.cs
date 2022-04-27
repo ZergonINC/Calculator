@@ -11,8 +11,6 @@ namespace Calculator2.Model.Operations
 {
     public class Equally : IOperation
     {
-        SeparatorValidator separatorValidator = new();
-
         BaseCalculatorModel _calculator;
 
         public Equally(BaseCalculatorModel calculator)
@@ -25,15 +23,17 @@ namespace Calculator2.Model.Operations
             return _calculator.LeftOperand != String.Empty && _calculator.Operator != String.Empty && _calculator.RightOperand != String.Empty && _calculator.Result  == String.Empty;
         }
 
-        public void Do()
+        public string Do()
         {
-            _calculator.LeftOperand = separatorValidator.ReplaceSeparator(_calculator.LeftOperand);
+            _calculator.LeftOperand = SeparatorValidator.ReplaceSeparator(_calculator.LeftOperand);
 
-            _calculator.RightOperand = separatorValidator.ReplaceSeparator(_calculator.RightOperand);
+            _calculator.RightOperand = SeparatorValidator.ReplaceSeparator(_calculator.RightOperand);
 
             Executing executing = new ExecutingBuilder().SetCalculator(_calculator).SetCalculation(new Calculation(OperationsDict.arithmeticOperations.GetValueOrDefault(_calculator.Operator))).SetConvertor(new NumberConvertor()).Build();
 
             executing.Run();
+
+            return _calculator.Result;
         }
     }
 }

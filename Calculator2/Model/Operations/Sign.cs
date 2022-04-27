@@ -21,9 +21,11 @@ namespace Calculator2.Model.Operations
             return _calculator.LeftOperand != String.Empty && _calculator.Operator == String.Empty;
         }
 
-        public void Do(string sign)
+        public string Do(string sign)
         {
             _calculator.Operator = sign;
+
+            return _calculator.Temp + " " + _calculator.Operator;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Calculator2.ViewModel
         }
 
 
-        private string _secondDisplay;
+        private string _secondDisplay = string.Empty;
 
         public string SecondDisplay
         {
@@ -38,8 +38,6 @@ namespace Calculator2.ViewModel
         }
 
         BaseCalculatorModel _calculator;
-
-        NumberValidator numberValidator = new();
 
         ParametrizedCalculatorModel parametrized = new();
 
@@ -60,14 +58,23 @@ namespace Calculator2.ViewModel
                 {
                     var number = parametr.ToString();
 
-                    number = numberValidator.Check(number) ?
-                     numberValidator.GetValidValue(number) :
-                     number.Remove(number.Length - 1);
+                    Display = parametrized.SetOp(new Number(_calculator)).Do(number);
 
-                    parametrized.SetOp(new Number(_calculator)).Do(number);
-
-                    Display += number;
                 }, (parametr) => parametrized.SetOp(new Number(_calculator)).CanDo());
+            }
+        }
+
+        public ICommand SeparatorCommand
+        {
+            get
+            {
+                return new RelayCommand((parametr) =>
+                {
+                    var number = parametr.ToString();
+
+                    Display = parametrized.SetOp(new Number(_calculator)).Do(number);
+
+                }, (parametr) => !Display.Contains(",") && !Display.Contains("."));//Стоит изменить?
             }
         }
 
@@ -78,9 +85,9 @@ namespace Calculator2.ViewModel
                 return new RelayCommand((parametr) =>
                 {
                     var sign = parametr.ToString();
-                    parametrized.SetOp(new Sign(_calculator)).Do(sign);
 
-                    Display += " " + sign + " ";
+                    SecondDisplay = parametrized.SetOp(new Sign(_calculator)).Do(sign);
+
                 }, (parametr) => parametrized.SetOp(new Sign(_calculator)).CanDo());
             }
         }
@@ -91,9 +98,10 @@ namespace Calculator2.ViewModel
             {
                 return new RelayCommand((parametr) =>
                 {
-                    notparametezer.SetOp(new Equally(_calculator)).Do();
+                    Display = notparametezer.SetOp(new Equally(_calculator)).Do();
 
-                    Display = _calculator.Result;
+                    SecondDisplay = "";
+
                 }, (parametr) => notparametezer.SetOp(new Equally(_calculator)).CanDo());
             }
         }
@@ -106,8 +114,8 @@ namespace Calculator2.ViewModel
             {
                 return new RelayCommand((parametr) =>
                 {
-                    notparametezer.SetOp(new Clear(_calculator)).Do();
-                }, (parametr) => notparametezer.SetOp(new Clear(_calculator)).CanDo());
+                    Display = notparametezer.SetOp(new Clear(_calculator)).Do();
+                });
             }
         }
 

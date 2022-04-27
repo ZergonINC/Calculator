@@ -10,7 +10,7 @@ namespace Calculator2.Model
 {
     public class BaseCalculatorModel : BaseViewModel, ICalculator
     {
-        private string _leftOperand = "";
+        private string _leftOperand = String.Empty;
 
         public string LeftOperand
         {
@@ -23,7 +23,7 @@ namespace Calculator2.Model
         }
 
 
-        private string _rightOperand = "";
+        private string _rightOperand = String.Empty;
 
         public string RightOperand
         {
@@ -36,7 +36,7 @@ namespace Calculator2.Model
         }
 
 
-        private string _operator = "";
+        private string _operator = String.Empty;
 
         public string Operator
         {
@@ -49,7 +49,7 @@ namespace Calculator2.Model
         }
 
 
-        private string _result = "";
+        private string _result = String.Empty;
 
         public string Result
         {
@@ -62,7 +62,7 @@ namespace Calculator2.Model
         }
 
 
-        private string _temp = "";
+        private string _temp = String.Empty;
 
         public string Temp
         {

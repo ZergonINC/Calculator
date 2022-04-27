@@ -4,8 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator2.Views" 
-        xmlns:viewmodel="clr-namespace:Calculator2.ViewModel" 
-        d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         Title="Calculator" 
         Background="#FAF3F3"
         Height="325" 
@@ -24,10 +22,10 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <Menu Background="#E1E5EA">
+            <Menu Background="#E1E5EA" FontFamily="Calisto MT">
                 <MenuItem Header="Вид">
-                    <CheckBox Content="Вычисление даты"/>
-                    <CheckBox Content="Вычисление валют"/>
+                    <CheckBox FontFamily="Calisto MT" Content="Вычисление даты"/>
+                    <CheckBox FontFamily="Calisto MT" Content="Вычисление валют"/>
                 </MenuItem>
             </Menu>
         </Grid>
@@ -42,7 +40,7 @@
                 HorizontalContentAlignment="Right" 
                 VerticalContentAlignment="Bottom" 
                 TextWrapping="Wrap" 
-                FontFamily="Microsoft YaHei UI" 
+                FontFamily="Calisto MT" 
                 FontSize="22" 
                 FontWeight="Normal" 
                 IsReadOnly="True"/>
@@ -50,6 +48,7 @@
             <TextBlock 
             Height="24" 
             Text="{Binding Path=SecondDisplay}" 
+            FontFamily="Calisto MT"
             TextWrapping="Wrap" 
             VerticalAlignment="Bottom" 
             Margin="13,0,36,38" 
@@ -78,43 +77,43 @@
             </Grid.RowDefinitions>
 
             <!--#region Numbers buttons -->
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="1" Command="{Binding NumberCommand}" CommandParameter="1" Grid.Column="1" Grid.Row="2"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="2" Command="{Binding NumberCommand}" CommandParameter="2" Grid.Column="2" Grid.Row="2"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="3" Command="{Binding NumberCommand}" CommandParameter="3" Grid.Column="3" Grid.Row="2"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="4" Command="{Binding NumberCommand}" CommandParameter="4" Grid.Column="1" Grid.Row="3"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="5" Command="{Binding NumberCommand}" CommandParameter="5" Grid.Column="2" Grid.Row="3"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="6" Command="{Binding NumberCommand}" CommandParameter="6" Grid.Column="3" Grid.Row="3"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="7" Command="{Binding NumberCommand}" CommandParameter="7" Grid.Column="1" Grid.Row="4"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="8" Command="{Binding NumberCommand}" CommandParameter="8" Grid.Column="2" Grid.Row="4"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="9" Command="{Binding NumberCommand}" CommandParameter="9" Grid.Column="3" Grid.Row="4"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="," Command="{Binding NumberCommand}" CommandParameter="," Grid.Column="3" Grid.Row="5"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="0" Command="{Binding NumberCommand}" CommandParameter="0" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="1" Command="{Binding NumberCommand}" CommandParameter="1" Grid.Column="1" Grid.Row="2"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="2" Command="{Binding NumberCommand}" CommandParameter="2" Grid.Column="2" Grid.Row="2"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="3" Command="{Binding NumberCommand}" CommandParameter="3" Grid.Column="3" Grid.Row="2"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="4" Command="{Binding NumberCommand}" CommandParameter="4" Grid.Column="1" Grid.Row="3"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="5" Command="{Binding NumberCommand}" CommandParameter="5" Grid.Column="2" Grid.Row="3"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="6" Command="{Binding NumberCommand}" CommandParameter="6" Grid.Column="3" Grid.Row="3"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="7" Command="{Binding NumberCommand}" CommandParameter="7" Grid.Column="1" Grid.Row="4"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="8" Command="{Binding NumberCommand}" CommandParameter="8" Grid.Column="2" Grid.Row="4"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="9" Command="{Binding NumberCommand}" CommandParameter="9" Grid.Column="3" Grid.Row="4"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="," Command="{Binding SeparatorCommand}" CommandParameter="," Grid.Column="3" Grid.Row="5"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="0" Command="{Binding NumberCommand}" CommandParameter="0" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"/>
             <!--#endregion-->
 
             <!--#region Arithmetic buttons -->
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="±" Grid.Column="4" Grid.Row="1" Command="{Binding ArithmeticCommand}" CommandParameter="±"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="/" Grid.Column="4" Grid.Row="2" Command="{Binding ArithmeticCommand}" CommandParameter="/"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="*" Grid.Column="4" Grid.Row="3" Command="{Binding ArithmeticCommand}" CommandParameter="*"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="-" Grid.Column="4" Grid.Row="4" Command="{Binding ArithmeticCommand}" CommandParameter="-"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="+" Grid.Column="4" Grid.Row="5" Command="{Binding ArithmeticCommand}" CommandParameter="+"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="√" Grid.Column="5" Grid.Row="1" Command="{Binding ArithmeticCommand}" CommandParameter="√"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="x^y" Grid.Column="5" Grid.Row="2" Command="{Binding ArithmeticCommand}" CommandParameter="x^y"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="1/x" Grid.Column="5" Grid.Row="3" Command="{Binding ArithmeticCommand}" CommandParameter="1/x"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="=" Grid.Column="5" Grid.Row="4" Grid.RowSpan="2" Command="{Binding EqualsCommand}"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="±" Grid.Column="4" Grid.Row="1" Command="{Binding ArithmeticCommand}" CommandParameter="±"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="/" Grid.Column="4" Grid.Row="2" Command="{Binding ArithmeticCommand}" CommandParameter="/"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="*" Grid.Column="4" Grid.Row="3" Command="{Binding ArithmeticCommand}" CommandParameter="*"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="-" Grid.Column="4" Grid.Row="4" Command="{Binding ArithmeticCommand}" CommandParameter="-"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="+" Grid.Column="4" Grid.Row="5" Command="{Binding ArithmeticCommand}" CommandParameter="+"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="√" Grid.Column="5" Grid.Row="1" Command="{Binding ArithmeticCommand}" CommandParameter="√"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="x^y" Grid.Column="5" Grid.Row="2" Command="{Binding ArithmeticCommand}" CommandParameter="x^y"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="1/x" Grid.Column="5" Grid.Row="3" Command="{Binding ArithmeticCommand}" CommandParameter="1/x"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="=" Grid.Column="5" Grid.Row="4" Grid.RowSpan="2" Command="{Binding EqualsCommand}"/>
             <!--#endregion-->
 
             <!--#region Memory buttons -->
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="MC" Grid.Column="1" Grid.Row="0" Command="{Binding MemoryClearCommand}"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="MR" Grid.Column="2" Grid.Row="0" Command="{Binding MemoryReadCommand}"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="MS" Grid.Column="3" Grid.Row="0" Command="{Binding MemorySaveCommand}"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="M+" Grid.Column="4" Grid.Row="0" Command="{Binding MemoryPlusCommand}"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="M-" Grid.Column="5" Grid.Row="0" Command="{Binding MemoryMinusCommand}"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="MC" Grid.Column="1" Grid.Row="0" Command="{Binding MemoryClearCommand}"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="MR" Grid.Column="2" Grid.Row="0" Command="{Binding MemoryReadCommand}"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="MS" Grid.Column="3" Grid.Row="0" Command="{Binding MemorySaveCommand}"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="M+" Grid.Column="4" Grid.Row="0" Command="{Binding MemoryPlusCommand}"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="#FF134496" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="M-" Grid.Column="5" Grid.Row="0" Command="{Binding MemoryMinusCommand}"/>
             <!--#endregion-->
 
             <!--#region Clear buttons -->
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="C" Grid.Column="3" Grid.Row="1"  Command="{Binding ClearCommand}"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="CE" Grid.Column="2" Grid.Row="1" Command="{Binding CleanEntryCommand}"/>
-            <Button Margin ="3" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="←"  Grid.Column="1" Grid.Row="1" Command="{Binding BackspaceCommand}"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="Red" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="C" Grid.Column="3" Grid.Row="1"  Command="{Binding ClearCommand}"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" Foreground="Red" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="CE" Grid.Column="2" Grid.Row="1" Command="{Binding CleanEntryCommand}"/>
+            <Button Margin ="3" FontFamily="Calisto MT" FontSize="14" BorderBrush="#A7BBC7" Background="#E1E5EA" Content="←"  Grid.Column="1" Grid.Row="1" Command="{Binding BackspaceCommand}"/>
             <!--#endregion-->
         </Grid>
 

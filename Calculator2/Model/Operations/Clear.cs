@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator2.Model
+namespace Calculator2.Model.Operations
 {
     public class Clear : IOperation
     {
@@ -21,13 +21,15 @@ namespace Calculator2.Model
             return true;
         }
 
-        public void Do()
+        public string Do()
         {
-            _calculator.LeftOperand = "";
-            _calculator.RightOperand = "";
-            _calculator.Result = "";
-            _calculator.Operator = "";
-            _calculator.Temp = "";
+            _calculator.LeftOperand = String.Empty;
+            _calculator.RightOperand = String.Empty;
+            _calculator.Result = String.Empty;
+            _calculator.Operator = String.Empty;
+            _calculator.Temp = String.Empty;
+
+            return "0";
         }
     }
 }

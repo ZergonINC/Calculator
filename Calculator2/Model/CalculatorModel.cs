@@ -27,9 +27,9 @@ namespace Calculator2.Model
             return this.Operation.CanDo();
         }
 
-        public void Do()
+        public string Do()
         {
-            this.Operation.Do();
+            return this.Operation.Do();
         }
     }
 }
