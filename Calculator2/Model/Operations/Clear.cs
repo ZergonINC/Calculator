@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Model.Operations
 {
-    public class Clear : IOperation
+    public class Clear : IOperationExecuting
     {
         BaseCalculatorModel _calculator;
 
@@ -27,7 +27,6 @@ namespace Calculator2.Model.Operations
             _calculator.RightOperand = String.Empty;
             _calculator.Result = String.Empty;
             _calculator.Operator = String.Empty;
-            _calculator.Temp = String.Empty;
 
             return "0";
         }

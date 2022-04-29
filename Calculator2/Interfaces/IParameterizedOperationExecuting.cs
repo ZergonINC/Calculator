@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Interfaces
 {
-    public interface IParametrizedOperation
+    public interface IParameterizedOperationExecuting
     {
         bool CanDo();
 
-        string Do(string parametr);
+        void Do(string parametr);
     }
 }

@@ -1,11 +1,12 @@
 ﻿using Calculator2.Interfaces;
+using Calculator2.Model.Operations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator2.Model.Operations
+namespace Calculator2.Model.CalculationOperations
 {
     public static class OperationsDict
     {

@@ -5,18 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator2.Model
+namespace Calculator2.Model.Executers
 {
-    public class CalculatorModel
+    public class OperationExecuting
     {
-        private IOperation Operation { get; set; }
+        private IOperationExecuting Operation { get; set; }
 
-        public CalculatorModel()
+        public OperationExecuting()
         {
             SetOp(this.Operation);
         }
 
-        public CalculatorModel SetOp(IOperation operation)
+        public OperationExecuting SetOp(IOperationExecuting operation)
         {
             this.Operation = operation;
             return this;
@@ -29,7 +29,7 @@ namespace Calculator2.Model
 
         public string Do()
         {
-            return this.Operation.Do();
+             return this.Operation.Do();
         }
     }
 }

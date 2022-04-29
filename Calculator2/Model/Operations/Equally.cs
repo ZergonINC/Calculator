@@ -1,5 +1,6 @@
 ﻿using Calculator2.Interfaces;
-using Calculator2.Model.Calc;
+using Calculator2.Model.CalculationOperations;
+using Calculator2.Model.Executers;
 using Calculator2.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Model.Operations
 {
-    public class Equally : IOperation
+    public class Equally : IOperationExecuting
     {
         BaseCalculatorModel _calculator;
 
@@ -20,7 +21,7 @@ namespace Calculator2.Model.Operations
 
         public bool CanDo()
         {
-            return _calculator.LeftOperand != String.Empty && _calculator.Operator != String.Empty && _calculator.RightOperand != String.Empty && _calculator.Result  == String.Empty;
+            return _calculator.LeftOperand != String.Empty && _calculator.Operator != String.Empty  && _calculator.Result  == String.Empty;
         }
 
         public string Do()

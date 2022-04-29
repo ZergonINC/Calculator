@@ -5,18 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator2.Model
+namespace Calculator2.Model.Executers
 {
-    public class ParametrizedCalculatorModel
+    public class ParameterizedOperationExecuting
     {
-        private IParametrizedOperation ParametrizedOperation { get; set; }
+        private IParameterizedOperationExecuting ParametrizedOperation { get; set; }
         
-        public ParametrizedCalculatorModel()
+        public ParameterizedOperationExecuting()
         {
             SetOp(this.ParametrizedOperation);
         }
 
-        public ParametrizedCalculatorModel SetOp(IParametrizedOperation parametrizedOperation)
+        public ParameterizedOperationExecuting SetOp(IParameterizedOperationExecuting parametrizedOperation)
         {
             this.ParametrizedOperation = parametrizedOperation;
             return this;
@@ -27,9 +27,9 @@ namespace Calculator2.Model
             return this.ParametrizedOperation.CanDo();
         }
 
-        public string Do(string parametr)
+        public void Do(string parametr)
         {
-            return this.ParametrizedOperation.Do(parametr);
+            this.ParametrizedOperation.Do(parametr);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Calculator2.Interfaces;
 using Calculator2.Model;
+using Calculator2.Model.Executers;
 using Calculator2.Model.Operations;
 using System;
 using System.Collections.Generic;
@@ -37,11 +38,23 @@ namespace Calculator2.ViewModel
             }
         }
 
+        private string _temp = String.Empty;
+
+        public string Temp
+        {
+            get { return _temp; }
+            set
+            {
+                _temp = value;
+                RaisePropertyChanged(nameof(Temp));
+            }
+        }
+
         BaseCalculatorModel _calculator;
 
-        ParametrizedCalculatorModel parametrized = new();
+        ParameterizedOperationExecuting parameterized = new();
 
-        CalculatorModel notparametezer = new();
+        OperationExecuting notparameterized = new();
 
         public MainViewModel(BaseCalculatorModel calculator)
         {
@@ -54,27 +67,21 @@ namespace Calculator2.ViewModel
         {
             get
             {
-                return new RelayCommand((parametr) =>
+                return new RelayCommand((parameter) =>
                 {
-                    var number = parametr.ToString();
+                    Display = "";
 
-                    Display = parametrized.SetOp(new Number(_calculator)).Do(number);
+                    var number = parameter.ToString();
 
-                }, (parametr) => parametrized.SetOp(new Number(_calculator)).CanDo());
-            }
-        }
+                    Temp += number;
 
-        public ICommand SeparatorCommand
-        {
-            get
-            {
-                return new RelayCommand((parametr) =>
-                {
-                    var number = parametr.ToString();
+                    Temp = NumberValidator.Check(Temp) ?
+                        NumberValidator.GetValidValue(Temp) :
+                        Temp.Remove(Temp.Length - 1); // валидировать в пердставлении
 
-                    Display = parametrized.SetOp(new Number(_calculator)).Do(number);
+                    Display = Temp;
 
-                }, (parametr) => !Display.Contains(",") && !Display.Contains("."));//Стоит изменить?
+                }, (parameter) => parameterized.SetOp(new Number(_calculator)).CanDo());
             }
         }
 
@@ -82,39 +89,51 @@ namespace Calculator2.ViewModel
         {
             get
             {
-                return new RelayCommand((parametr) =>
+                return new RelayCommand((parameter) =>
                 {
-                    var sign = parametr.ToString();
+                    var sign = parameter.ToString();
 
-                    SecondDisplay = parametrized.SetOp(new Sign(_calculator)).Do(sign);
+                    parameterized.SetOp(new Number(_calculator)).Do(Display);
 
-                }, (parametr) => parametrized.SetOp(new Sign(_calculator)).CanDo());
+                    Temp = "";
+
+                    Display += " " + sign + " ";
+
+                    SecondDisplay = Display;
+
+                    parameterized.SetOp(new Sign(_calculator)).Do(sign);
+
+                }, (parameter) => parameterized.SetOp(new Sign(_calculator)).CanDo());
             }
         }
 
-        public ICommand EqualsCommand
+        public ICommand EquallyCommand
         {
             get
             {
-                return new RelayCommand((parametr) =>
+                return new RelayCommand((parameter) =>
                 {
-                    Display = notparametezer.SetOp(new Equally(_calculator)).Do();
+                    parameterized.SetOp(new Number(_calculator)).Do(Display);
 
-                    SecondDisplay = "";
+                    Display = notparameterized.SetOp(new Equally(_calculator)).Do();
 
-                }, (parametr) => notparametezer.SetOp(new Equally(_calculator)).CanDo());
+                    SecondDisplay = String.Empty;
+
+                }, (parameter) => notparameterized.SetOp(new Equally(_calculator)).CanDo());
             }
         }
         #endregion
-
+         
         #region Clear commands
         public ICommand ClearCommand
         {
             get
             {
-                return new RelayCommand((parametr) =>
+                return new RelayCommand((parameter) =>
                 {
-                    Display = notparametezer.SetOp(new Clear(_calculator)).Do();
+                    Display = notparameterized.SetOp(new Clear(_calculator)).Do();
+
+                    SecondDisplay = String.Empty;
                 });
             }
         }
@@ -123,9 +142,10 @@ namespace Calculator2.ViewModel
         {
             get
             {
-                return new RelayCommand((obj) =>
+                return new RelayCommand((parameter) =>
                 {
-
+                    Display = "0";
+                    Temp = "";
                 });
             }
         }
@@ -134,10 +154,16 @@ namespace Calculator2.ViewModel
         {
             get
             {
-                return new RelayCommand((obj) =>
+                return new RelayCommand((parameter) =>
                 {
+                    Display = Display.Remove(Display.Length - 1);
+                    Temp = Temp.Remove(Temp.Length - 1);
+                    if (Display.Length == 0)
+                    {
+                        Display = "0";
+                    }
 
-                });
+                }, (parametr) => Display.Length > 0 && Temp.Length > 0);
             }
         }
         #endregion

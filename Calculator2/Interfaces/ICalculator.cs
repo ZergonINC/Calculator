@@ -15,7 +15,5 @@ namespace Calculator2.Interfaces
         string Operator { get; set; }
 
         string Result { get; set; }
-
-        string Temp { get; set; }
     }
 }

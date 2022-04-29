@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Model.Operations
 {
-    public class Sign : IParametrizedOperation
+    public class Sign : IParameterizedOperationExecuting
     {
         BaseCalculatorModel _calculator;
 
@@ -18,14 +18,12 @@ namespace Calculator2.Model.Operations
 
         public bool CanDo()
         {
-            return _calculator.LeftOperand != String.Empty && _calculator.Operator == String.Empty;
+            return _calculator.Operator == String.Empty;
         }
 
-        public string Do(string sign)
+        public void Do(string sign)
         {
             _calculator.Operator = sign;
-
-            return _calculator.Temp + " " + _calculator.Operator;
         }
     }
 }

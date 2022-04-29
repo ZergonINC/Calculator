@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Interfaces
 {
-    public interface IOperation
+    public interface IOperationExecuting
     {
         bool CanDo();
 

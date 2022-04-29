@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator2.Model
+namespace Calculator2.Model.Executers
 {
     public class Executing : BaseExecuting
     {

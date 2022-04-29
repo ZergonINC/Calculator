@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator2.Model.Calc
+namespace Calculator2.Model.Executers
 {
     public class ExecutingBuilder
     {

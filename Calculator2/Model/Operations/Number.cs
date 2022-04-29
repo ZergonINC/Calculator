@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Model.Operations
 {
-    public class Number : IParametrizedOperation
+    public class Number : IParameterizedOperationExecuting
     {
         BaseCalculatorModel _calculator;
 
@@ -25,27 +25,14 @@ namespace Calculator2.Model.Operations
 
         public bool CanDoLeftOperand() => _calculator.Operator == String.Empty;
 
-        public string Do(string number)
+        public void Do(string number)
         {
-            temp += number;
-
-            temp = NumberValidator.Check(temp) ?
-                NumberValidator.GetValidValue(temp) :
-                temp.Remove(temp.Length - 1);
-
             if (CanDoLeftOperand())
             {
-
-                    _calculator.LeftOperand += temp;
-                    temp = String.Empty;
-                    _calculator.Temp = _calculator.LeftOperand;
-                return _calculator.LeftOperand;
+                _calculator.LeftOperand = number;
+                return;
             }
-
-                _calculator.RightOperand += temp;
-                temp = String.Empty;
-
-            return _calculator.RightOperand;
+            _calculator.RightOperand = number;
         }
     }
 }

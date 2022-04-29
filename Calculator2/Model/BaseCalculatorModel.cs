@@ -60,18 +60,5 @@ namespace Calculator2.Model
                 RaisePropertyChanged(nameof(Result));
             }
         }
-
-
-        private string _temp = String.Empty;
-
-        public string Temp
-        {
-            get { return _temp; }
-            set
-            {
-                _temp = value;
-                RaisePropertyChanged(nameof(Temp));
-            }
-        }
     }
 }
