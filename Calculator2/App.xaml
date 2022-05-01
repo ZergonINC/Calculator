@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Calculator2"
              Startup="App_Startup">
     <Application.Resources>
-         
+        <ResourceDictionary Source="C:\Users\Сергей\source\repos\Calculator2\Calculator2\Styles\RoundedBotton.xaml"/>
     </Application.Resources>
 </Application>

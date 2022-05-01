@@ -1,12 +1,7 @@
-﻿using Calculator2.Interfaces;
-using Calculator2.Model;
+﻿using Calculator2.Model;
 using Calculator2.Model.Executers;
 using Calculator2.Model.Operations;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Calculator2.ViewModel
@@ -25,7 +20,6 @@ namespace Calculator2.ViewModel
             }
         }
 
-
         private string _secondDisplay = string.Empty;
 
         public string SecondDisplay
@@ -38,15 +32,15 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private string _temp = String.Empty;
+        private string _temporary = String.Empty;
 
-        public string Temp
+        public string Temporary
         {
-            get { return _temp; }
+            get { return _temporary; }
             set
             {
-                _temp = value;
-                RaisePropertyChanged(nameof(Temp));
+                _temporary = value;
+                RaisePropertyChanged(nameof(Temporary));
             }
         }
 
@@ -69,17 +63,17 @@ namespace Calculator2.ViewModel
             {
                 return new RelayCommand((parameter) =>
                 {
-                    Display = "";
+                    Display = String.Empty;
 
                     var number = parameter.ToString();
 
-                    Temp += number;
+                    Temporary += number;
 
-                    Temp = NumberValidator.Check(Temp) ?
-                        NumberValidator.GetValidValue(Temp) :
-                        Temp.Remove(Temp.Length - 1); // валидировать в пердставлении
+                    Temporary = NumberValidator.Check(Temporary) ?
+                        NumberValidator.GetValidValue(Temporary) :
+                        Temporary.Remove(Temporary.Length - 1); // валидировать в пердставлении
 
-                    Display = Temp;
+                    Display = Temporary;
 
                 }, (parameter) => parameterized.SetOp(new Number(_calculator)).CanDo());
             }
@@ -95,7 +89,7 @@ namespace Calculator2.ViewModel
 
                     parameterized.SetOp(new Number(_calculator)).Do(Display);
 
-                    Temp = "";
+                    Temporary = String.Empty;
 
                     Display += " " + sign + " ";
 
@@ -132,7 +126,9 @@ namespace Calculator2.ViewModel
                 return new RelayCommand((parameter) =>
                 {
                     Display = notparameterized.SetOp(new Clear(_calculator)).Do();
-
+                    
+                    Temporary = String.Empty;
+                    
                     SecondDisplay = String.Empty;
                 });
             }
@@ -145,7 +141,7 @@ namespace Calculator2.ViewModel
                 return new RelayCommand((parameter) =>
                 {
                     Display = "0";
-                    Temp = "";
+                    Temporary = String.Empty;
                 });
             }
         }
@@ -157,13 +153,12 @@ namespace Calculator2.ViewModel
                 return new RelayCommand((parameter) =>
                 {
                     Display = Display.Remove(Display.Length - 1);
-                    Temp = Temp.Remove(Temp.Length - 1);
+                    Temporary = Temporary.Remove(Temporary.Length - 1);
                     if (Display.Length == 0)
-                    {
                         Display = "0";
-                    }
 
-                }, (parametr) => Display.Length > 0 && Temp.Length > 0);
+
+                }, (parametr) => Display.Length > 0 && Temporary.Length > 0);
             }
         }
         #endregion
