@@ -2,6 +2,7 @@
 using Calculator2.Model.Executers;
 using Calculator2.Model.Operations;
 using System;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace Calculator2.ViewModel
@@ -67,7 +68,7 @@ namespace Calculator2.ViewModel
 
                     var number = parameter.ToString();
 
-                    Temporary += number;
+                    Display += number;
 
                     Temporary = NumberValidator.Check(Temporary) ?
                         NumberValidator.GetValidValue(Temporary) :
