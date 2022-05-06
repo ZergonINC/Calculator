@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Calculator2.Model;
+using Calculator2.ViewModel;
+using System.Windows;
 
 namespace Calculator2.Views
 {

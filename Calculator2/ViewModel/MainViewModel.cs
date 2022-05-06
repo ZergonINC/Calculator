@@ -1,14 +1,29 @@
 ﻿using Calculator2.Model;
 using Calculator2.Model.Executers;
 using Calculator2.Model.Operations;
+using Calculator2.Views;
 using System;
 using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Calculator2.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
+        private Page _currentPage;
+
+        public Page CurrentPage
+        {
+            get { return _currentPage; }
+            set
+            {
+                _currentPage = value;
+                RaisePropertyChanged(nameof(CurrentPage));
+            }
+        }
+
         private string _display = "0";
 
         public string Display
@@ -47,13 +62,20 @@ namespace Calculator2.ViewModel
 
         BaseCalculatorModel _calculator;
 
+        CalculatingDate _calculatingDate;
+
+        UnitConversion _unitConversion;
+
         ParameterizedOperationExecuting parameterized = new();
 
         OperationExecuting notparameterized = new();
 
-        public MainViewModel(BaseCalculatorModel calculator)
+        public MainViewModel()
         {
-            this._calculator = calculator;
+            this._calculator = new BaseCalculatorModel();
+
+            this._calculatingDate = new CalculatingDate();
+            this._unitConversion = new UnitConversion();
         }
 
 
@@ -68,7 +90,7 @@ namespace Calculator2.ViewModel
 
                     var number = parameter.ToString();
 
-                    Display += number;
+                    Temporary += number;
 
                     Temporary = NumberValidator.Check(Temporary) ?
                         NumberValidator.GetValidValue(Temporary) :
@@ -220,5 +242,30 @@ namespace Calculator2.ViewModel
             }
         }
         #endregion
+
+
+        public ICommand CalculatingDateCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    CurrentPage = _calculatingDate;
+                });
+            }
+        }
+
+
+        public ICommand UnitConversionCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    CurrentPage = _unitConversion;
+                });
+            }
+        }
+
     }
 }

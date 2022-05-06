@@ -17,15 +17,5 @@ namespace Calculator2
     /// </summary>
     public partial class App : Application
     {
-        private void App_Startup(object sender, StartupEventArgs e)
-        {
-            BaseCalculatorModel baseCalculatorModel = new();
-            MainViewModel mainViewModel = new(baseCalculatorModel);
-            
-            MainWindow window = new();
-            window.DataContext = mainViewModel;
-
-            window.Show();
-        }
     }
 }
