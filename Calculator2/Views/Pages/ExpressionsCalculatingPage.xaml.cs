@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Calculator2.Views
+namespace Calculator2.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для UnitConversion.xaml
+    /// Логика взаимодействия для ExpressionsCalculatingPage.xaml
     /// </summary>
-    public partial class UnitConversion : Page
+    public partial class ExpressionsCalculatingPage : Page
     {
-        public UnitConversion()
+        public ExpressionsCalculatingPage()
         {
             InitializeComponent();
         }

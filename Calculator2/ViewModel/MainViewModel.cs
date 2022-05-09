@@ -2,6 +2,8 @@
 using Calculator2.Model.Executers;
 using Calculator2.Model.Operations;
 using Calculator2.Views;
+using Calculator2.Views.DatePages;
+using Calculator2.Views.Pages;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -62,9 +64,9 @@ namespace Calculator2.ViewModel
 
         BaseCalculatorModel _calculator;
 
-        CalculatingDate _calculatingDate;
+        CalculatingDatePage _calculatingDate;
 
-        UnitConversion _unitConversion;
+        UnitConversionPage _unitConversion;
 
         ParameterizedOperationExecuting parameterized = new();
 
@@ -74,8 +76,8 @@ namespace Calculator2.ViewModel
         {
             this._calculator = new BaseCalculatorModel();
 
-            this._calculatingDate = new CalculatingDate();
-            this._unitConversion = new UnitConversion();
+            this._calculatingDate = new CalculatingDatePage();
+            this._unitConversion = new UnitConversionPage();
         }
 
 
