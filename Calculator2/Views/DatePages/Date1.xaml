@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Calculator2.Views"
       mc:Ignorable="d" 
-      Height="150" 
-      Width="380"
+      Height="120" 
+      Width="360"
       Background="White"
       Title="Date1">
 
@@ -19,7 +19,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="С" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Top" Margin="10,0,0,0"/>
-        <DatePicker HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Top"/>
+        <DatePicker   Text="0.0" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Top"/>
         <Label Content="По" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Top" Margin="140,0,0,0"/>
         <DatePicker HorizontalAlignment="Left" Margin="170,0,0,0" VerticalAlignment="Top"/>
         <Label Content="Разница (годы, месяцы, недели, дни)" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Margin="10,0,0,0"/>

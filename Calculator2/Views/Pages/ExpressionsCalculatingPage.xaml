@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Calculator2.Views.Pages"
       mc:Ignorable="d" 
-      Height="263" 
-      Width="380"
+      Height="233" 
+      Width="360"
       Background="White">
 
     <Grid>

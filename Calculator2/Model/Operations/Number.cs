@@ -11,8 +11,6 @@ namespace Calculator2.Model.Operations
     {
         BaseCalculatorModel _calculator;
 
-        string temp = String.Empty;
-
         public Number(BaseCalculatorModel calculator)
         {
             _calculator = calculator;

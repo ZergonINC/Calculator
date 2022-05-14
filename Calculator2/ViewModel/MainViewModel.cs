@@ -38,7 +38,7 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private string _secondDisplay = string.Empty;
+        private string _secondDisplay = String.Empty;
 
         public string SecondDisplay
         {
@@ -74,10 +74,11 @@ namespace Calculator2.ViewModel
 
         public MainViewModel()
         {
-            this._calculator = new BaseCalculatorModel();
+            this._calculator = new();
 
-            this._calculatingDate = new CalculatingDatePage();
-            this._unitConversion = new UnitConversionPage();
+            this._calculatingDate = new();
+
+            this._unitConversion = new();
         }
 
 
@@ -256,7 +257,6 @@ namespace Calculator2.ViewModel
                 });
             }
         }
-
 
         public ICommand UnitConversionCommand
         {

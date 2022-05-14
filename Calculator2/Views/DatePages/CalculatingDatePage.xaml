@@ -3,37 +3,45 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Calculator2.Views"
+      xmlns:local="clr-namespace:Calculator2.Views" 
+      xmlns:viewmodel="clr-namespace:Calculator2.ViewModel" 
       mc:Ignorable="d" 
-      Height="263" 
-      Width="380"
+      Height="233" 
+      Width="360"
       Background="White">
+
+    <Page.DataContext>
+        <viewmodel:CalculatingDateViewModel/>
+    </Page.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="43"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" 
-               Content="Выберите нужный расчет даты:"  
-               HorizontalAlignment="Left" 
-               VerticalAlignment="Top"/>
+        <Label Margin="10,0,30,7"
+               Grid.Row="0" 
+               Content="Выберите нужный расчет даты:"/>
 
-        <ComboBox Margin="10,7,30,7" Grid.Row="1">
-            <TextBlock Text="Вычисление интервала между двумя датами"/>
-            <TextBlock Text="Добавление или вычитание дней до указанной даты"/>
+        <ComboBox  Margin="10,7,30,7" 
+                   Grid.Row="1"  
+                   IsEditable="True" 
+                   IsReadOnly="True" 
+                   Focusable="False" 
+                   ItemsSource="{Binding DateModeItems}"
+                   SelectedItem="{Binding DateMode}">
         </ComboBox>
 
         <Grid Grid.Row="2">
-            <Frame NavigationUIVisibility="Hidden" Content="{Binding Date1}"/>
+            <Frame NavigationUIVisibility="Hidden" Content="{Binding DateModePages}"/>
         </Grid>
-        
-        <Button Grid.Row="3" 
-                Content="Вычислить" 
-                VerticalAlignment="Top"
-                Margin="270,5,20,5"/>
+
+        <Button Grid.Row="3"
+                Margin="220,3,30,3"
+                Content="Вычислить"
+                Command="{Binding CalculatingDate}"/>
     </Grid>
 </Page>

@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Calculator2.Views"
       mc:Ignorable="d" 
-      Height="263" 
-      Width="380"
+      Height="233" 
+      Width="360"
       Background="White">
 
     <Grid>
@@ -21,19 +21,19 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="Выберите тип преобразуемой единицы" Grid.Row="0"/>
-        <ComboBox Margin="10,7,30,7" Grid.Row="1">
+        <ComboBox Margin="10,3,30,3" Grid.Row="1">
             <TextBlock Text="Вычисление интервала между двумя датами"/>
             <TextBlock Text="Добавление или вычитание дней до указанной даты"/>
         </ComboBox>
         <Label Content="Из" Grid.Row="2"/>
-        <TextBox Grid.Row="3" TextWrapping="Wrap" Text="TextBox" Margin="10,7,30,7"/>
-        <ComboBox Margin="10,7,30,7" Grid.Row="4">
+        <TextBox Grid.Row="3" TextWrapping="Wrap" Text="TextBox" Margin="10,3,30,3"/>
+        <ComboBox Margin="10,3,30,3" Grid.Row="4">
             <TextBlock Text="Вычисление интервала между двумя датами"/>
             <TextBlock Text="Добавление или вычитание дней до указанной даты"/>
         </ComboBox>
         <Label Content="В" Grid.Row="5"/>
-        <TextBlock Grid.Row="6" TextWrapping="Wrap" Text="TextBox" Margin="10,7,30,7"/>
-        <ComboBox Margin="10,7,30,7" Grid.Row="7">
+        <TextBlock Grid.Row="6" TextWrapping="Wrap" Text="TextBox" Margin="10,3,30,3"/>
+        <ComboBox Margin="10,3,30,3" Grid.Row="7">
             <TextBlock Text="Вычисление интервала между двумя датами"/>
             <TextBlock Text="Добавление или вычитание дней до указанной даты"/>
         </ComboBox>
