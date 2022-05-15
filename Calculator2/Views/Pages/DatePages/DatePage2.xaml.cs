@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Calculator2.Views.DatePages
+namespace Calculator2.Views.Pages.DatePages
 {
     /// <summary>
-    /// Логика взаимодействия для DateCalculating.xaml
+    /// Логика взаимодействия для Date2.xaml
     /// </summary>
-    public partial class CalculatingDatePage : Page
+    public partial class DatePage2 : Page
     {
-        public CalculatingDatePage()
+        public DatePage2()
         {
             InitializeComponent();
         }

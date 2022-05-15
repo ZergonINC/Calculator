@@ -2,8 +2,8 @@
 using Calculator2.Model.Executers;
 using Calculator2.Model.Operations;
 using Calculator2.Views;
-using Calculator2.Views.DatePages;
 using Calculator2.Views.Pages;
+using Calculator2.Views.Pages.DatePages;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -68,6 +68,14 @@ namespace Calculator2.ViewModel
 
         UnitConversionPage _unitConversion;
 
+        AutoLeasingPage _autoLeasingPage;
+
+        CurrencyCalculationPage _currencyCalculationPage;
+
+        ExpressionsCalculatingPage _expressionsCalculatingPage;
+
+        MortgagePage _mortgagePage;
+
         ParameterizedOperationExecuting parameterized = new();
 
         OperationExecuting notparameterized = new();
@@ -79,6 +87,14 @@ namespace Calculator2.ViewModel
             this._calculatingDate = new();
 
             this._unitConversion = new();
+
+            this._autoLeasingPage = new();
+
+            this._mortgagePage = new();
+
+            this._expressionsCalculatingPage = new();
+            
+            this._currencyCalculationPage = new();  
         }
 
 
@@ -246,7 +262,7 @@ namespace Calculator2.ViewModel
         }
         #endregion
 
-
+        #region Menu commands
         public ICommand CalculatingDateCommand
         {
             get
@@ -269,5 +285,47 @@ namespace Calculator2.ViewModel
             }
         }
 
+        public ICommand MortgageCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    CurrentPage = _mortgagePage;
+                });
+            }
+        }
+
+        public ICommand AutoLeasingCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    CurrentPage = _autoLeasingPage;
+                });
+            }
+        }
+        public ICommand CurrencyCalculationCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    CurrentPage = _currencyCalculationPage;
+                });
+            }
+        }
+        public ICommand ExpressionsCalculatingCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    CurrentPage = _expressionsCalculatingPage;
+                });
+            }
+        }
+        #endregion
     }
 }

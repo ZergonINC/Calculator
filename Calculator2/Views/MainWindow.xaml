@@ -9,8 +9,7 @@
         Title="Calculator" 
         Background="#FAF3F3"
         Height="322" 
-        Width="603
-        " 
+        Width="227" 
         WindowStyle="SingleBorderWindow" 
         WindowState="Normal" 
         HorizontalAlignment="Stretch"
@@ -38,8 +37,12 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Grid.ColumnSpan="5">
-            <Menu Background="#E1E5EA" FontFamily="Consolas">
-                <MenuItem Header="Вид" FontSize="14">
+            <Menu Background="#E1E5EA" 
+                  FontFamily="Consolas">
+                
+                <MenuItem Header="Режимы вычисления" 
+                          FontSize="14">
+                    
                     <MenuItem FontFamily="Consolas" Header="Обычный">
                         <MenuItem.Triggers>
                             <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
@@ -48,6 +51,38 @@
                                         <Storyboard TargetProperty="Width" TargetName="Calcul">
                                             <DoubleAnimation 
                                                 To="227"                                         
+                                                Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </MenuItem.Triggers>
+                    </MenuItem>
+
+                    <MenuItem FontFamily="Consolas" Header="Ипотека" Command="{Binding MortgageCommand}">
+                        <MenuItem.Triggers>
+                            <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard TargetProperty="Width" TargetName="Calcul">
+                                            <DoubleAnimation 
+                                                To="603"                                         
+                                                Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </MenuItem.Triggers>
+                    </MenuItem>
+
+                    <MenuItem FontFamily="Consolas" Header="Автолизинг" Command="{Binding AutoLeasingCommand}">
+                        <MenuItem.Triggers>
+                            <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard TargetProperty="Width" TargetName="Calcul">
+                                            <DoubleAnimation 
+                                                To="603"                                         
                                                 Duration="0:0:0.3"/>
                                         </Storyboard>
                                     </BeginStoryboard>
@@ -72,55 +107,39 @@
                         </MenuItem.Triggers>
                     </MenuItem>
 
+                    <MenuItem FontFamily="Consolas" Header="Вычисление валют" Command="{Binding CurrencyCalculationCommand}">
+                        <MenuItem.Triggers>
+                            <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard TargetProperty="Width" TargetName="Calcul">
+                                            <DoubleAnimation 
+                                                To="603"                                         
+                                                Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </MenuItem.Triggers>
+                    </MenuItem>
+
+                    <MenuItem FontFamily="Consolas" Header="Вычисление выражений" Command="{Binding ExpressionsCalculatingCommand}">
+                        <MenuItem.Triggers>
+                            <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard TargetProperty="Width" TargetName="Calcul">
+                                            <DoubleAnimation 
+                                                To="603"                                         
+                                                Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </MenuItem.Triggers>
+                    </MenuItem>
+                    
                     <MenuItem FontFamily="Consolas" Header="Преобразование едениц" Command="{Binding UnitConversionCommand}">
-                        <MenuItem.Triggers>
-                            <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
-                                <EventTrigger.Actions>
-                                    <BeginStoryboard>
-                                        <Storyboard TargetProperty="Width" TargetName="Calcul">
-                                            <DoubleAnimation 
-                                                To="603"                                         
-                                                Duration="0:0:0.3"/>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger.Actions>
-                            </EventTrigger>
-                        </MenuItem.Triggers>
-                    </MenuItem>
-
-                    <MenuItem FontFamily="Consolas" Header="Ипотека" Command="{Binding UnitConversionCommand}">
-                        <MenuItem.Triggers>
-                            <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
-                                <EventTrigger.Actions>
-                                    <BeginStoryboard>
-                                        <Storyboard TargetProperty="Width" TargetName="Calcul">
-                                            <DoubleAnimation 
-                                                To="603"                                         
-                                                Duration="0:0:0.3"/>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger.Actions>
-                            </EventTrigger>
-                        </MenuItem.Triggers>
-                    </MenuItem>
-
-                    <MenuItem FontFamily="Consolas" Header="Автолизинг" Command="{Binding UnitConversionCommand}">
-                        <MenuItem.Triggers>
-                            <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
-                                <EventTrigger.Actions>
-                                    <BeginStoryboard>
-                                        <Storyboard TargetProperty="Width" TargetName="Calcul">
-                                            <DoubleAnimation 
-                                                To="603"                                         
-                                                Duration="0:0:0.3"/>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger.Actions>
-                            </EventTrigger>
-                        </MenuItem.Triggers>
-                    </MenuItem>
-
-                    <MenuItem FontFamily="Consolas" Header="Расчет валют" Command="{Binding UnitConversionCommand}">
                         <MenuItem.Triggers>
                             <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
                                 <EventTrigger.Actions>
@@ -229,7 +248,7 @@
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="3">
-            <Frame NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
+            <Frame BorderThickness="2" BorderBrush="#A7BBC7" NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
         </Grid>
 
     </Grid>

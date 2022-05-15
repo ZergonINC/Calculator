@@ -1,5 +1,5 @@
 ﻿using Calculator2.Model.CalculatingDateModel;
-using Calculator2.Views.DatePages;
+using Calculator2.Views.Pages.DatePages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,27 +48,27 @@ namespace Calculator2.ViewModel
                 _dateMode = value;
                 RaisePropertyChanged(nameof(DateMode));
 
-                DateModePages = DateMode == DateModeItems.FirstOrDefault() ? _date1 : _date2;
+                DateModePages = DateMode == DateModeItems.FirstOrDefault() ? _datePage1 : _datePage2;
             }
         }
 
         BaseCalculatingDateModel _dateModel;
 
-        Date1 _date1;
+        DatePage1 _datePage1;
 
-        Date2 _date2;
+        DatePage2 _datePage2;
 
         public CalculatingDateViewModel()
         {
             this._dateModel = new();
 
-            this._date1 = new();
+            this._datePage1 = new();
 
-            this._date2 = new();
+            this._datePage2 = new();
 
             DateMode = DateModeItems.FirstOrDefault();
 
-            DateModePages = _date1;
+            DateModePages = _datePage1;
         }
     }
 }
