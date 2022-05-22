@@ -8,9 +8,9 @@ namespace Calculator2.Interfaces
 {
     public interface ICalculator
     {
-        string LeftOperand { get; set; }
+        List<string> Elements { get; set; }
 
-        string RightOperand { get; set; }
+        Stack<string> BinaryExample { get; set; } 
 
         string Operator { get; set; }
 

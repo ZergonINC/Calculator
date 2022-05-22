@@ -2,39 +2,35 @@
 using Calculator2.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculator2.Model
 {
     public class BaseCalculatorModel : BaseViewModel, ICalculator
     {
-        private string _leftOperand = String.Empty;
+        private List<string> _elements = new();
 
-        public string LeftOperand
+        public List<string> Elements
         {
-            get { return _leftOperand; }
+            get { return _elements; }
             set
             {
-                _leftOperand = value;
-                RaisePropertyChanged(nameof(LeftOperand));
+                _elements = value;
+                RaisePropertyChanged(nameof(Elements));
             }
         }
 
 
-        private string _rightOperand = String.Empty;
+        private Stack<string> _binaryExample = new();
 
-        public string RightOperand
+        public Stack<string> BinaryExample
         {
-            get { return _rightOperand; }
+            get { return _binaryExample; }
             set
             {
-                _rightOperand = value;
-                RaisePropertyChanged(nameof(RightOperand));
+                _binaryExample = value;
+                RaisePropertyChanged(nameof(BinaryExample));
             }
         }
-
 
         private string _operator = String.Empty;
 

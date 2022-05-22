@@ -23,8 +23,8 @@ namespace Calculator2.Model.Operations
 
         public string Do()
         {
-            _calculator.LeftOperand = String.Empty;
-            _calculator.RightOperand = String.Empty;
+            _calculator.Elements.Clear();
+            _calculator.BinaryExample.Clear();
             _calculator.Result = String.Empty;
             _calculator.Operator = String.Empty;
 

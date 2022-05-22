@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Interfaces
 {
-    public interface IParameterizedOperationExecuting
+    public interface IExpression
     {
-        bool CanDo();
+        public string Expression { get; set; }
 
-        string Do(string parametr);
+        public string[] RPN { get; set; }
     }
 }

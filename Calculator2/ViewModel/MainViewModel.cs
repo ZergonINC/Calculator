@@ -105,8 +105,6 @@ namespace Calculator2.ViewModel
             {
                 return new RelayCommand((parameter) =>
                 {
-                    Display = String.Empty;
-
                     var number = parameter.ToString();
 
                     Temporary += number;
@@ -116,8 +114,7 @@ namespace Calculator2.ViewModel
                         Temporary.Remove(Temporary.Length - 1); // валидировать в пердставлении
 
                     Display = Temporary;
-
-                }, (parameter) => parameterized.SetOp(new Number(_calculator)).CanDo());
+                });
             }
         }
 
@@ -129,17 +126,17 @@ namespace Calculator2.ViewModel
                 {
                     var sign = parameter.ToString();
 
-                    parameterized.SetOp(new Number(_calculator)).Do(Display);
+                    if(Temporary != String.Empty || Display == "0")
+                        parameterized.SetOp(new Number(_calculator)).Do(Display);
+
+                    SecondDisplay = parameterized.SetOp(new Sign(_calculator)).Do(sign);
+
+                    if (Temporary != String.Empty && !parameterized.SetOp(new Sign(_calculator)).CanDo() && notparameterized.SetOp(new Equally(_calculator)).CanDo())
+                        Display = notparameterized.SetOp(new Equally(_calculator)).Do();
 
                     Temporary = String.Empty;
 
-                    Display += " " + sign + " ";
-
-                    SecondDisplay = Display;
-
-                    parameterized.SetOp(new Sign(_calculator)).Do(sign);
-
-                }, (parameter) => parameterized.SetOp(new Sign(_calculator)).CanDo());
+                }, (parameter) => (Temporary != String.Empty || Display == "0"));
             }
         }
 
@@ -155,7 +152,11 @@ namespace Calculator2.ViewModel
 
                     SecondDisplay = String.Empty;
 
-                }, (parameter) => notparameterized.SetOp(new Equally(_calculator)).CanDo());
+                    _calculator.Elements.Clear();
+
+                    _calculator.BinaryExample.Clear();
+
+                }, (parameter) => !parameterized.SetOp(new Number(_calculator)).CanDo());
             }
         }
         #endregion

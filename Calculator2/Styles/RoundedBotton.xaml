@@ -34,7 +34,7 @@
                         </Trigger>
                         
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Background" Value="#FFC5C5C5"/>
+                            <Setter Property="Background" Value="#E1E5EA"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

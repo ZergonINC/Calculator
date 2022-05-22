@@ -27,9 +27,9 @@ namespace Calculator2.Model.Executers
             return this.ParametrizedOperation.CanDo();
         }
 
-        public void Do(string parametr)
+        public string Do(string parametr)
         {
-            this.ParametrizedOperation.Do(parametr);
+            return this.ParametrizedOperation.Do(parametr);
         }
     }
 }

@@ -18,19 +18,22 @@ namespace Calculator2.Model.Operations
 
         public bool CanDo()
         {
-            return _calculator.Result == String.Empty;
+            return _calculator.Operator == String.Empty;
         }
 
-        public bool CanDoLeftOperand() => _calculator.Operator == String.Empty;
-
-        public void Do(string number)
+        public string Do(string number)
         {
-            if (CanDoLeftOperand())
+            _calculator.Elements = _calculator.Elements.Append(number).ToList();
+
+            _calculator.BinaryExample.Push(number);
+
+            if (!CanDo())
             {
-                _calculator.LeftOperand = number;
-                return;
+                _calculator.BinaryExample.Push(_calculator.Operator);
+                _calculator.Operator = String.Empty;
             }
-            _calculator.RightOperand = number;
+
+            return String.Join(" ", _calculator.Elements);    
         }
     }
 }

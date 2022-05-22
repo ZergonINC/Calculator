@@ -21,18 +21,16 @@ namespace Calculator2.Model.Operations
 
         public bool CanDo()
         {
-            return _calculator.LeftOperand != String.Empty && _calculator.Operator != String.Empty  && _calculator.Result  == String.Empty;
+            return _calculator.BinaryExample.Count > 2;
         }
 
         public string Do()
         {
-            _calculator.LeftOperand = SeparatorValidator.ReplaceSeparator(_calculator.LeftOperand);
-
-            _calculator.RightOperand = SeparatorValidator.ReplaceSeparator(_calculator.RightOperand);
-
-            Executing executing = new ExecutingBuilder().SetCalculator(_calculator).SetCalculation(new Calculation(OperationsDict.arithmeticOperations.GetValueOrDefault(_calculator.Operator))).SetConvertor(new NumberConvertor()).Build();
+            Executing executing = new ExecutingBuilder().SetCalculator(_calculator).SetCalculation(new Calculation(OperationsDict.arithmeticOperations.GetValueOrDefault(_calculator.BinaryExample.Pop()))).SetConvertor(new NumberConvertor()).Build();
 
             executing.Run();
+
+            _calculator.BinaryExample.Push(_calculator.Result);
 
             return _calculator.Result;
         }

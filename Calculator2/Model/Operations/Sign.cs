@@ -18,12 +18,19 @@ namespace Calculator2.Model.Operations
 
         public bool CanDo()
         {
-            return _calculator.Operator == String.Empty;
+            return NumberValidator.Check(_calculator.Elements[^1]);
         }
 
-        public void Do(string sign)
+        public string Do(string sign)
         {
             _calculator.Operator = sign;
+
+            if (!CanDo())
+                _calculator.Elements.RemoveAt(_calculator.Elements.Count - 1);
+
+            _calculator.Elements = _calculator.Elements.Append(_calculator.Operator).ToList();
+
+            return String.Join(" ", _calculator.Elements);
         }
     }
 }
