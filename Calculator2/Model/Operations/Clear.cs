@@ -21,14 +21,39 @@ namespace Calculator2.Model.Operations
             return true;
         }
 
+        public bool CanRealize()
+        {
+            return true;
+        }
+
         public string Do()
         {
             _calculator.Elements.Clear();
+
             _calculator.BinaryExample.Clear();
+
             _calculator.Result = String.Empty;
+
             _calculator.Operator = String.Empty;
 
+            _calculator.FirstOperand = String.Empty;
+
+            _calculator.SecondOperand = String.Empty;
+
             return "0";
+        }
+
+        public void Realize()
+        {
+            _calculator.Elements.Clear();
+
+            _calculator.BinaryExample.Clear();
+
+            _calculator.FirstOperand = String.Empty;
+
+            _calculator.SecondOperand = String.Empty;
+
+            _calculator.Operator = String.Empty;
         }
     }
 }

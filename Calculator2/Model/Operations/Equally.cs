@@ -21,18 +21,37 @@ namespace Calculator2.Model.Operations
 
         public bool CanDo()
         {
-            return _calculator.BinaryExample.Count > 2;
+            return _calculator.BinaryExample.Count > 2 && !NumberValidator.Check(_calculator.Elements.LastOrDefault(""));
+        }
+
+        public bool CanRealize()
+        {
+            return _calculator.Operator != String.Empty;
         }
 
         public string Do()
         {
-            Executing executing = new ExecutingBuilder().SetCalculator(_calculator).SetCalculation(new Calculation(OperationsDict.arithmeticOperations.GetValueOrDefault(_calculator.BinaryExample.Pop()))).SetConvertor(new NumberConvertor()).Build();
+            string arithmeticOperator = _calculator.BinaryExample.Pop();
+
+            _calculator.SecondOperand = _calculator.BinaryExample.Pop();
+
+            _calculator.FirstOperand = _calculator.BinaryExample.Pop();
+
+            Executing executing = new ExecutingBuilder()
+                .SetCalculator(_calculator)
+                .SetCalculation(new Calculation(OperationsDict.arithmeticOperations.GetValueOrDefault(arithmeticOperator)))
+                .SetConvertor(new NumberConvertor()).Build();
 
             executing.Run();
 
             _calculator.BinaryExample.Push(_calculator.Result);
 
             return _calculator.Result;
+        }
+
+        public void Realize()
+        {
+            //если не пригодиться удалить
         }
     }
 }

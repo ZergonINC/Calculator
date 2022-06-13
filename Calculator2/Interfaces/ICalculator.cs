@@ -10,7 +10,11 @@ namespace Calculator2.Interfaces
     {
         List<string> Elements { get; set; }
 
-        Stack<string> BinaryExample { get; set; } 
+        Stack<string> BinaryExample { get; set; }
+
+        public string FirstOperand { get; set; }
+
+        public string SecondOperand { get; set; }
 
         string Operator { get; set; }
 

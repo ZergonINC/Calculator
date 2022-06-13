@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Calculator2.Interfaces;
+using Calculator2.Model.CalculationOperations;
+using Calculator2.Model.Executers;
+using Calculator2.Model.Operations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,48 +10,60 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Model.ExpressionsCalculatingModel
 {
-    public class CalculatingExpression
+    public class CalculatingExpression : IOperationExecuting
     {
-        public double calc(string[] obj)
+        BaseCalculatorModel _expressionCalculator;
+
+        RPNConverter converter = new();
+
+        public CalculatingExpression(BaseCalculatorModel expressionCalculator)
         {
-            Stack<double> temp = new Stack<double>();
+            _expressionCalculator = expressionCalculator;
+        }
 
-            foreach (var item in obj)
+        public bool CanDo()
+        {
+            return _expressionCalculator.Operator != String.Empty;
+        }
+
+        public bool CanRealize()
+        {
+            return _expressionCalculator.Elements.Count > 2;
+        }
+
+        public string Do()
+        {
+            Stack<string> temp = new();
+
+            foreach (var token in _expressionCalculator.Elements)
             {
-                if (double.TryParse(item, out var i))
+                if (!NumberValidator.Check(token))
                 {
-                    temp.Push(i);
-                    continue;
+                    _expressionCalculator.SecondOperand = temp.Pop();
+                    _expressionCalculator.FirstOperand = temp.Pop();
+
+                    Executing executing = new ExecutingBuilder()
+                        .SetCalculator(_expressionCalculator)
+                        .SetCalculation(new Calculation(OperationsDict.arithmeticOperations.GetValueOrDefault(token)))
+                        .SetConvertor(new NumberConvertor()).Build();
+
+                    executing.Run();
+
+                    temp.Push(_expressionCalculator.Result);
                 }
+                else temp.Push(token);
+            }
 
-                var right = temp.Pop();
-                var left = temp.Pop();
+            _expressionCalculator.Result = temp.Pop().ToString();
 
-                switch (item)
-                {
-                    case "-":
-                        temp.Push(left - right);
-                        break;
+            return _expressionCalculator.Result;
+        }
 
-                    case "+":
-                        temp.Push(left + right);
-                        break;
+        public void Realize()
+        {
+            List<string> RPNElements = converter.ToRPN(_expressionCalculator.Elements);
 
-                    case "*":
-                        temp.Push(left * right);
-                        break;
-
-                    case "/":
-                        temp.Push(left / right);
-                        break;
-
-                    case "^":
-                        temp.Push(Math.Pow(left, right));
-                        break;
-                }
-            } 
-
-            return temp.Pop();
+            _expressionCalculator.Elements = RPNElements;
         }
     }
 }

@@ -13,10 +13,10 @@ namespace Calculator2.Model.Executers
         
         public ParameterizedOperationExecuting()
         {
-            SetOp(this.ParametrizedOperation);
+            SetOperation(this.ParametrizedOperation);
         }
 
-        public ParameterizedOperationExecuting SetOp(IParameterizedOperationExecuting parametrizedOperation)
+        public ParameterizedOperationExecuting SetOperation(IParameterizedOperationExecuting parametrizedOperation)
         {
             this.ParametrizedOperation = parametrizedOperation;
             return this;

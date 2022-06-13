@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:viewmodel="clr-namespace:Calculator2.ViewModel" 
       xmlns:local="clr-namespace:Calculator2.Views.Pages"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="266" 
       d:DesignWidth="383"
       Background="White">
@@ -17,35 +17,50 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="120"/>
         </Grid.RowDefinitions>
         
-        <Label Margin="6,0,10,0"
-               VerticalAlignment="Center"
-               Grid.Row="0" 
-               Content="Введите числовое выражение для расчета:"/>
+        <Label 
+            Margin="6,0,10,0"
+            VerticalAlignment="Center"
+            Grid.Row="0"  
+            Content="Введите числовое выражение для расчета:"/>
 
-        <TextBox  Grid.Row="1"
-                  BorderThickness="1"
-                  BorderBrush="Black"
-                  HorizontalContentAlignment="Left" 
-                  VerticalContentAlignment="Bottom" 
-                  TextWrapping="Wrap" 
-                  FontFamily="Consolas" 
-                  FontSize="24" 
-                  FontWeight="Normal" 
-                  Margin="10,10,10,10"
-                  Text="{Binding ExpressionDisplay}"/>
+        <Grid Grid.Row="1">
+            <TextBox  
+                Grid.Row="1"   
+                BorderThickness="1"
+                BorderBrush="Black"
+                HorizontalContentAlignment="Left" 
+                VerticalContentAlignment="Bottom" 
+                TextWrapping="Wrap" 
+                FontFamily="Consolas" 
+                FontSize="20" 
+                FontWeight="Normal" 
+                Margin="10,5,10,5"
+                IsReadOnly="True"
+                Text="{Binding Path=ExpressionDisplay}"/>
 
+            <TextBlock   
+                Text="{Binding Path=ExpressionSecondDisplay}" 
+                FontFamily="Consolas"
+                FontSize="20"
+                TextWrapping="Wrap" 
+                Margin="10,5,10,30" 
+                TextAlignment="Right"/>
+        </Grid>
+        
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
 
+            <!--#region ExpressionNumber Buttons -->
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -60,22 +75,23 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <!--#region Numbers buttons -->
-                <Button Margin="5" Background="White" FontSize="15" Content="1" Command="{Binding ExpressionNumberCommand}" CommandParameter="1" Grid.Column="0" Grid.Row="2"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="2" Command="{Binding ExpressionNumberCommand}" CommandParameter="2" Grid.Column="1" Grid.Row="2"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="3" Command="{Binding ExpressionNumberCommand}" CommandParameter="3" Grid.Column="2" Grid.Row="2"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="4" Command="{Binding ExpressionNumberCommand}" CommandParameter="4" Grid.Column="0" Grid.Row="1"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="5" Command="{Binding ExpressionNumberCommand}" CommandParameter="5" Grid.Column="1" Grid.Row="1"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="6" Command="{Binding ExpressionNumberCommand}" CommandParameter="6" Grid.Column="2" Grid.Row="1"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="7" Command="{Binding ExpressionNumberCommand}" CommandParameter="7" Grid.Column="0" Grid.Row="0"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="8" Command="{Binding ExpressionNumberCommand}" CommandParameter="8" Grid.Column="1" Grid.Row="0"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="9" Command="{Binding ExpressionNumberCommand}" CommandParameter="9" Grid.Column="2" Grid.Row="0"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="," Command="{Binding ExpressionNumberCommand}" CommandParameter="," Grid.Column="2" Grid.Row="3"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="0" Command="{Binding ExpressionNumberCommand}" CommandParameter="0" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
-                <!--#endregion-->
+                
+                <Button Margin="3" Background="White" FontSize="15" Content="1" Command="{Binding ExpressionNumberCommand}" CommandParameter="1" Grid.Column="0" Grid.Row="2"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="2" Command="{Binding ExpressionNumberCommand}" CommandParameter="2" Grid.Column="1" Grid.Row="2"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="3" Command="{Binding ExpressionNumberCommand}" CommandParameter="3" Grid.Column="2" Grid.Row="2"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="4" Command="{Binding ExpressionNumberCommand}" CommandParameter="4" Grid.Column="0" Grid.Row="1"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="5" Command="{Binding ExpressionNumberCommand}" CommandParameter="5" Grid.Column="1" Grid.Row="1"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="6" Command="{Binding ExpressionNumberCommand}" CommandParameter="6" Grid.Column="2" Grid.Row="1"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="7" Command="{Binding ExpressionNumberCommand}" CommandParameter="7" Grid.Column="0" Grid.Row="0"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="8" Command="{Binding ExpressionNumberCommand}" CommandParameter="8" Grid.Column="1" Grid.Row="0"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="9" Command="{Binding ExpressionNumberCommand}" CommandParameter="9" Grid.Column="2" Grid.Row="0"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="," Command="{Binding ExpressionNumberCommand}" CommandParameter="," Grid.Column="2" Grid.Row="3"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="0" Command="{Binding ExpressionNumberCommand}" CommandParameter="0" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
             </Grid>
+            <!--#endregion-->
 
-            <Grid Grid.Column="2">
+            <!--#region ExpressinArithmetic Buttons-->
+            <Grid Grid.Column="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -89,19 +105,19 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
-                <Button Margin="5" Background="White" FontSize="25" Content="←" Command="{Binding ExpressionClearCommand}" CommandParameter="1" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="C" Command="{Binding ExpressionClearCommand}" CommandParameter="1" Grid.Column="2" Grid.Row="0"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="+" Command="{Binding ExpressinArithmeticCommand}" CommandParameter="1" Grid.Column="0" Grid.Row="2"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="-" Command="{Binding ExpressinArithmeticCommand}" CommandParameter="1" Grid.Column="1" Grid.Row="2"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="(" Command="{Binding ExpressinArithmeticCommand}" CommandParameter="1" Grid.Column="0" Grid.Row="1"/>
-                <Button Margin="5" Background="White" FontSize="15" Content=")" Command="{Binding ExpressinArithmeticCommand}" CommandParameter="1" Grid.Column="1" Grid.Row="1"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="*" Command="{Binding ExpressinArithmeticCommand}" CommandParameter="1" Grid.Column="0" Grid.Row="3"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="/" Command="{Binding ExpressinArithmeticCommand}" CommandParameter="1" Grid.Column="1" Grid.Row="3"/>
-                <Button Margin="5" Background="White" FontSize="15" Content="^" Command="{Binding ExpressinArithmeticCommand}" CommandParameter="1" Grid.Column="2" Grid.Row="1"/>
-                <Button Margin="5" Background="White" FontSize="25" Content="=" Command="{Binding ExpressinArithmeticCommand}" CommandParameter="1" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2"/>
+                
+                <Button Margin="3" Background="White" FontSize="20" Content="←" Command="{Binding ExpressionBackspaceCommand}" CommandParameter="1" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="C" Command="{Binding ExpressionClearCommand}" CommandParameter="1" Grid.Column="2" Grid.Row="0"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="+" Command="{Binding ExpressionArithmeticCommand}" CommandParameter="+" Grid.Column="0" Grid.Row="2"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="-" Command="{Binding ExpressionArithmeticCommand}" CommandParameter="-" Grid.Column="1" Grid.Row="2"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="(" Command="{Binding ExpressionLeftBracketCommand}" CommandParameter="(" Grid.Column="0" Grid.Row="1"/>
+                <Button Margin="3" Background="White" FontSize="15" Content=")" Command="{Binding ExpressionRightBracketCommand}" CommandParameter=")" Grid.Column="1" Grid.Row="1"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="*" Command="{Binding ExpressionArithmeticCommand}" CommandParameter="*" Grid.Column="0" Grid.Row="3"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="/" Command="{Binding ExpressionArithmeticCommand}" CommandParameter="/" Grid.Column="1" Grid.Row="3"/>
+                <Button Margin="3" Background="White" FontSize="15" Content="^" Command="{Binding ExpressionArithmeticCommand}" CommandParameter="^" Grid.Column="2" Grid.Row="1"/>
+                <Button Margin="3" Background="White" FontSize="25" Content="=" Command="{Binding ExpressionEquallyCommand}" CommandParameter="1" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2"/>
             </Grid>
-
+            <!--#endregion-->
         </Grid>
     </Grid>
 </Page>

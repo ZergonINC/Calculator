@@ -16,5 +16,13 @@ namespace Calculator2.Model.Operations
         public static bool Check(string input) => Regex.IsMatch(input, regexPattern);
 
         public static string GetValidValue(string input) => Regex.Match(input, regexPattern).Value;
+
+        public static bool IsNumeric(string input) => double.TryParse(input, out double output);
+
+        public static string GetValidNumericValue(string input)
+        {
+            double.TryParse(input, out double output);
+            return output.ToString();
+        }
     }
 }

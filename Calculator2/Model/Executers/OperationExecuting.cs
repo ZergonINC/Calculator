@@ -13,10 +13,10 @@ namespace Calculator2.Model.Executers
 
         public OperationExecuting()
         {
-            SetOp(this.Operation);
+            SetOperation(this.Operation);
         }
 
-        public OperationExecuting SetOp(IOperationExecuting operation)
+        public OperationExecuting SetOperation(IOperationExecuting operation)
         {
             this.Operation = operation;
             return this;
@@ -26,10 +26,19 @@ namespace Calculator2.Model.Executers
         {
             return this.Operation.CanDo();
         }
+        public bool CanRealize()
+        {
+            return this.Operation.CanRealize();
+        }
 
         public string Do()
         {
              return this.Operation.Do();
+        }
+
+        public void Realize()
+        {
+             this.Operation.Realize();
         }
     }
 }

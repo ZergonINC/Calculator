@@ -19,7 +19,6 @@ namespace Calculator2.Model
             }
         }
 
-
         private Stack<string> _binaryExample = new();
 
         public Stack<string> BinaryExample
@@ -29,6 +28,30 @@ namespace Calculator2.Model
             {
                 _binaryExample = value;
                 RaisePropertyChanged(nameof(BinaryExample));
+            }
+        }
+
+        private string _firstOperand = String.Empty;
+
+        public string FirstOperand
+        {
+            get { return _firstOperand; }
+            set
+            {
+                _firstOperand = value;
+                RaisePropertyChanged(nameof(FirstOperand));
+            }
+        }
+
+        private string _secondOperand = String.Empty;
+
+        public string SecondOperand
+        {
+            get { return _secondOperand; }
+            set
+            {
+                _secondOperand = value;
+                RaisePropertyChanged(nameof(SecondOperand));
             }
         }
 
@@ -43,7 +66,6 @@ namespace Calculator2.Model
                 RaisePropertyChanged(nameof(Operator));
             }
         }
-
 
         private string _result = String.Empty;
 

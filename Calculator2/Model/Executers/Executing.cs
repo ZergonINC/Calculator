@@ -10,8 +10,8 @@ namespace Calculator2.Model.Executers
     {
         public override void Run()
         {
-            double second = NumberConvertor.Convert(Calculator.BinaryExample.Pop());
-            double first = NumberConvertor.Convert(Calculator.BinaryExample.Pop());
+            double first = NumberConvertor.Convert(Calculator.FirstOperand);
+            double second = NumberConvertor.Convert(Calculator.SecondOperand);
             Calculator.Result = NumberConvertor.ConvertBack(Calculation.Make(first, second));
         }
     }

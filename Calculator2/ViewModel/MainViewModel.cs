@@ -50,7 +50,7 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private string _temporary = String.Empty;
+        private string _temporary = "0";
 
         public string Temporary
         {
@@ -106,12 +106,19 @@ namespace Calculator2.ViewModel
                 return new RelayCommand((parameter) =>
                 {
                     var number = parameter.ToString();
-
+                      
                     Temporary += number;
 
+                    if (Temporary.StartsWith(","))
+                        Temporary = "0,";
+
                     Temporary = NumberValidator.Check(Temporary) ?
-                        NumberValidator.GetValidValue(Temporary) :
-                        Temporary.Remove(Temporary.Length - 1); // валидировать в пердставлении
+                                NumberValidator.GetValidValue(Temporary) :
+                                BackspaceClear.Do(Temporary); // валидировать в пердставлении
+
+                    Temporary = Temporary.Contains(',') ? 
+                                Temporary : 
+                                NumberValidator.GetValidNumericValue(Temporary);
 
                     Display = Temporary;
                 });
@@ -126,17 +133,24 @@ namespace Calculator2.ViewModel
                 {
                     var sign = parameter.ToString();
 
-                    if(Temporary != String.Empty || Display == "0")
-                        parameterized.SetOp(new Number(_calculator)).Do(Display);
+                    bool TemporarilyNoEmpty = Temporary != String.Empty;
 
-                    SecondDisplay = parameterized.SetOp(new Sign(_calculator)).Do(sign);
+                    if (TemporarilyNoEmpty && Temporary[^1] == ',')
+                        Display = Display.Remove(Display.Length - 1);
 
-                    if (Temporary != String.Empty && !parameterized.SetOp(new Sign(_calculator)).CanDo() && notparameterized.SetOp(new Equally(_calculator)).CanDo())
-                        Display = notparameterized.SetOp(new Equally(_calculator)).Do();
+                    if(TemporarilyNoEmpty && Temporary.Contains(',') && Temporary[^1] == '0')
+                        Display = NumberValidator.GetValidNumericValue(Temporary);
+
+                    if (TemporarilyNoEmpty)
+                        parameterized.SetOperation(new Number(_calculator)).Do(Display);
+
+                    SecondDisplay = parameterized.SetOperation(new Sign(_calculator)).Do(sign);
+
+                    if (TemporarilyNoEmpty && notparameterized.SetOperation(new Equally(_calculator)).CanDo())
+                        Display = notparameterized.SetOperation(new Equally(_calculator)).Do();
 
                     Temporary = String.Empty;
-
-                }, (parameter) => (Temporary != String.Empty || Display == "0"));
+                });
             }
         }
 
@@ -146,17 +160,16 @@ namespace Calculator2.ViewModel
             {
                 return new RelayCommand((parameter) =>
                 {
-                    parameterized.SetOp(new Number(_calculator)).Do(Display);
+                    parameterized.SetOperation(new Number(_calculator)).Do(Display);
 
-                    Display = notparameterized.SetOp(new Equally(_calculator)).Do();
+                    Display = notparameterized.SetOperation(new Equally(_calculator)).Do();
+
+                    notparameterized.SetOperation(new Clear(_calculator)).Realize();
 
                     SecondDisplay = String.Empty;
 
-                    _calculator.Elements.Clear();
-
-                    _calculator.BinaryExample.Clear();
-
-                }, (parameter) => !parameterized.SetOp(new Number(_calculator)).CanDo());
+                    Temporary = "0";
+                }, (parameter) => notparameterized.SetOperation(new Equally(_calculator)).CanRealize());
             }
         }
         #endregion
@@ -168,10 +181,10 @@ namespace Calculator2.ViewModel
             {
                 return new RelayCommand((parameter) =>
                 {
-                    Display = notparameterized.SetOp(new Clear(_calculator)).Do();
+                    Display = notparameterized.SetOperation(new Clear(_calculator)).Do();
                     
-                    Temporary = String.Empty;
-                    
+                    Temporary = "0";
+
                     SecondDisplay = String.Empty;
                 });
             }
@@ -184,7 +197,8 @@ namespace Calculator2.ViewModel
                 return new RelayCommand((parameter) =>
                 {
                     Display = "0";
-                    Temporary = String.Empty;
+
+                    Temporary = "0";
                 });
             }
         }
@@ -195,13 +209,13 @@ namespace Calculator2.ViewModel
             {
                 return new RelayCommand((parameter) =>
                 {
-                    Display = Display.Remove(Display.Length - 1);
-                    Temporary = Temporary.Remove(Temporary.Length - 1);
+                    Display = BackspaceClear.Do(Display);
+
+                    Temporary = BackspaceClear.Do(Temporary);
+
                     if (Display.Length == 0)
                         Display = "0";
-
-
-                }, (parametr) => Display.Length > 0 && Temporary.Length > 0);
+                }, (parametr) => BackspaceClear.CanDo(Display) && BackspaceClear.CanDo(Temporary));
             }
         }
         #endregion

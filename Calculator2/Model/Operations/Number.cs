@@ -18,7 +18,7 @@ namespace Calculator2.Model.Operations
 
         public bool CanDo()
         {
-            return _calculator.Operator == String.Empty;
+            return _calculator.Operator != String.Empty;
         }
 
         public string Do(string number)
@@ -27,7 +27,7 @@ namespace Calculator2.Model.Operations
 
             _calculator.BinaryExample.Push(number);
 
-            if (!CanDo())
+            if (CanDo())
             {
                 _calculator.BinaryExample.Push(_calculator.Operator);
                 _calculator.Operator = String.Empty;
