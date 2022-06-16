@@ -10,9 +10,7 @@
       d:DesignWidth="383"
       Background="White">
 
-    <Page.DataContext>
-        <viewmodel:ExpressionsCalculatingViewModel/>
-    </Page.DataContext>
+
     
     <Grid>
         <Grid.RowDefinitions>
