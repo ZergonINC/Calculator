@@ -2,8 +2,6 @@
 using Calculator2.Model.Executers;
 using Calculator2.Model.Operations;
 using Calculator2.Views;
-using Calculator2.Views.Pages;
-
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -14,18 +12,6 @@ namespace Calculator2.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        private Page _currentPage;
-
-        public Page CurrentPage
-        {
-            get { return _currentPage; }
-            set
-            {
-                _currentPage = value;
-                RaisePropertyChanged(nameof(CurrentPage));
-            }
-        }
-
         private string _display = "0";
 
         public string Display
@@ -62,9 +48,9 @@ namespace Calculator2.ViewModel
             }
         }
 
-        BaseCalculatorModel _calculator;
+        ExpressionWindow expressionWindow;
 
-        ExpressionsCalculatingPage _expressionsCalculatingPage;
+        BaseCalculatorModel _calculator;
 
         ParameterizedOperationExecuting parameterized = new();
 
@@ -73,8 +59,6 @@ namespace Calculator2.ViewModel
         public MainViewModel()
         {
             this._calculator = new();
-
-            this._expressionsCalculatingPage = new();
         }
 
 
@@ -265,7 +249,7 @@ namespace Calculator2.ViewModel
             {
                 return new RelayCommand((parameter) =>
                 {
-                    CurrentPage = _expressionsCalculatingPage;
+                   
                 });
             }
         }

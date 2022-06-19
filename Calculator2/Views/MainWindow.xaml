@@ -9,7 +9,7 @@
         Title="Calculator" 
         Background="#FAF3F3"
         Height="322" 
-        Width="603" 
+        Width="227" 
         WindowStyle="SingleBorderWindow" 
         WindowState="Normal" 
         HorizontalAlignment="Stretch"
@@ -37,11 +37,12 @@
         <Grid Grid.Row="0" Grid.ColumnSpan="3">
             <Menu Background="#E1E5EA" 
                   FontFamily="Consolas">
-                
+
                 <MenuItem Header="Вид" 
                           FontSize="14">
 
                     <MenuItem FontFamily="Consolas" Header="Обычный"/>
+                    <MenuItem FontFamily="Consolas" Header="Мини"/>
                     <MenuItem FontFamily="Consolas" Header="Расширенный" Command="{Binding ExpressionsCalculatingCommand}"/>
                 </MenuItem>
             </Menu>

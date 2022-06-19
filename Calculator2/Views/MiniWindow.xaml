@@ -53,7 +53,7 @@
                     Margin="30,3,3,30" 
                     TextAlignment="Right"/>
 
-                <Button Content="/\" Margin="3,0,120,35"/>
+                <Button Background="#E1E5EA" BorderBrush="#A7BBC7" Content="/\" Margin="3,0,120,35"/>
             </Grid>
 
                 <Grid Grid.Row="1">
