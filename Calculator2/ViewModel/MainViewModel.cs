@@ -48,17 +48,18 @@ namespace Calculator2.ViewModel
             }
         }
 
-        ExpressionWindow expressionWindow;
-
         BaseCalculatorModel _calculator;
+
+        protected MainViewModel _mainVeiwModel;
 
         ParameterizedOperationExecuting parameterized = new();
 
-        OperationExecuting notparameterized = new();
+        OperationExecuting notParameterized = new();
 
         public MainViewModel()
         {
             this._calculator = new();
+            _mainVeiwModel = this;
         }
 
 
@@ -110,8 +111,8 @@ namespace Calculator2.ViewModel
 
                     SecondDisplay = parameterized.SetOperation(new Sign(_calculator)).Do(sign);
 
-                    if (TemporarilyNoEmpty && notparameterized.SetOperation(new Equally(_calculator)).CanDo())
-                        Display = notparameterized.SetOperation(new Equally(_calculator)).Do();
+                    if (TemporarilyNoEmpty && notParameterized.SetOperation(new Equally(_calculator)).CanDo())
+                        Display = notParameterized.SetOperation(new Equally(_calculator)).Do();
 
                     Temporary = String.Empty;
                 });
@@ -126,14 +127,14 @@ namespace Calculator2.ViewModel
                 {
                     parameterized.SetOperation(new Number(_calculator)).Do(Display);
 
-                    Display = notparameterized.SetOperation(new Equally(_calculator)).Do();
+                    Display = notParameterized.SetOperation(new Equally(_calculator)).Do();
 
-                    notparameterized.SetOperation(new Clear(_calculator)).Realize();
+                    notParameterized.SetOperation(new Clear(_calculator)).Realize();
 
                     SecondDisplay = String.Empty;
 
                     Temporary = "0";
-                }, (parameter) => notparameterized.SetOperation(new Equally(_calculator)).CanRealize());
+                }, (parameter) => notParameterized.SetOperation(new Equally(_calculator)).CanRealize());
             }
         }
         #endregion
@@ -145,7 +146,7 @@ namespace Calculator2.ViewModel
             {
                 return new RelayCommand((parameter) =>
                 {
-                    Display = notparameterized.SetOperation(new Clear(_calculator)).Do();
+                    Display = notParameterized.SetOperation(new Clear(_calculator)).Do();
                     
                     Temporary = "0";
 
@@ -243,13 +244,36 @@ namespace Calculator2.ViewModel
 
         #region Menu commands
 
-        public ICommand ExpressionsCalculatingCommand
+        public ICommand ExpressionsCalculatorCommand
         {
             get
             {
                 return new RelayCommand((parameter) =>
                 {
-                   
+                    var displayRootRegistry = (Application.Current as App).displayRootRegistry;
+
+                    var expressionsCalculatingViewModel = new ExpressionsCalculatingViewModel();
+
+                    displayRootRegistry.ShowPresentation(expressionsCalculatingViewModel);
+
+                    displayRootRegistry.HidePresentation(_mainVeiwModel);
+                });
+            }
+        }
+
+        public ICommand MiniCalculatorCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    var displayRootRegistry = (Application.Current as App).displayRootRegistry;
+
+                    var miniViewModel = new MiniViewModel();
+
+                    displayRootRegistry.ShowPresentation(miniViewModel);
+
+                    displayRootRegistry.HidePresentation(_mainVeiwModel);
                 });
             }
         }

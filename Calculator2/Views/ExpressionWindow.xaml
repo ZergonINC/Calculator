@@ -38,9 +38,8 @@
                 <MenuItem Header="Вид" 
                           FontSize="14">
 
-                    <MenuItem FontFamily="Consolas" Header="Обычный"/>
-                    <MenuItem FontFamily="Consolas" Header="Мини"/>
-                    <MenuItem FontFamily="Consolas" Header="Расширенный" Command="{Binding ExpressionsCalculatingCommand}"/>
+                    <MenuItem FontFamily="Consolas" Header="Обычный" Command="{Binding MainCalculatorCommand}"/>
+                    <MenuItem FontFamily="Consolas" Header="Расширенный"/>
                 </MenuItem>
             </Menu>
         </Grid>
@@ -72,6 +71,8 @@
                 TextWrapping="Wrap" 
                 Margin="3,3,40,30" 
                 TextAlignment="Right"/>
+
+                <Button Background="#E1E5EA" BorderThickness="0" Content="⇲" Command="{Binding MiniCalculatorCommand}" Margin="2,2,370,60"/>
             </Grid>
 
             <Grid Grid.Row="1">

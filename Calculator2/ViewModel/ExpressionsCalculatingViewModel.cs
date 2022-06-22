@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Calculator2.ViewModel
@@ -51,6 +52,8 @@ namespace Calculator2.ViewModel
 
         BaseCalculatorModel _expressionCalculator;
 
+        protected ExpressionsCalculatingViewModel _expressionsCalculatingVeiwModel;
+
         ParameterizedOperationExecuting expressionParameterized = new();
 
         OperationExecuting expressionNotParameterized = new();
@@ -58,6 +61,8 @@ namespace Calculator2.ViewModel
         public ExpressionsCalculatingViewModel()
         {
             _expressionCalculator = new();
+
+            _expressionsCalculatingVeiwModel = this;
         }
 
         public ICommand ExpressionNumberCommand
@@ -195,6 +200,43 @@ namespace Calculator2.ViewModel
 
 
                 }, (parametr) => ExpressionDisplay.Length > 0 && Temporary.Length > 0);
+            }
+        }
+        #endregion
+
+        #region Menu commands
+
+        public ICommand MainCalculatorCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    var displayRootRegistry = (Application.Current as App).displayRootRegistry;
+
+                    var mainViewModel = new MainViewModel();
+
+                    displayRootRegistry.ShowPresentation(mainViewModel);
+
+                    displayRootRegistry.HidePresentation(_expressionsCalculatingVeiwModel);
+                });
+            }
+        }
+
+        public ICommand MiniCalculatorCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    var displayRootRegistry = (Application.Current as App).displayRootRegistry;
+
+                    var miniViewModel = new MiniViewModel();
+
+                    displayRootRegistry.ShowPresentation(miniViewModel);
+
+                    displayRootRegistry.HidePresentation(_expressionsCalculatingVeiwModel);
+                });
             }
         }
         #endregion
