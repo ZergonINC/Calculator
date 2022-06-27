@@ -1,6 +1,8 @@
 ﻿using Calculator2.Model;
 using Calculator2.Model.Executers;
 using Calculator2.Model.Operations;
+using Calculator2.Model.Operations.ClearOperations;
+using Calculator2.Model.Operations.ConvertorsAndValidators;
 using Calculator2.Views;
 using System;
 using System.ComponentModel;
@@ -10,7 +12,7 @@ using System.Windows.Input;
 
 namespace Calculator2.ViewModel
 {
-    public class MainViewModel : BaseViewModel
+    public class MainWindowViewModel : BaseViewModel
     {
         private string _display = "0";
 
@@ -50,13 +52,13 @@ namespace Calculator2.ViewModel
 
         BaseCalculatorModel _calculator;
 
-        protected MainViewModel _mainVeiwModel;
+        protected MainWindowViewModel _mainVeiwModel;
 
         ParameterizedOperationExecuting parameterized = new();
 
         OperationExecuting notParameterized = new();
 
-        public MainViewModel()
+        public MainWindowViewModel()
         {
             this._calculator = new();
             _mainVeiwModel = this;
@@ -252,7 +254,7 @@ namespace Calculator2.ViewModel
                 {
                     var displayRootRegistry = (Application.Current as App).displayRootRegistry;
 
-                    var expressionsCalculatingViewModel = new ExpressionsCalculatingViewModel();
+                    var expressionsCalculatingViewModel = new AdvancedWindowViewModel();
 
                     displayRootRegistry.ShowPresentation(expressionsCalculatingViewModel);
 
@@ -269,7 +271,7 @@ namespace Calculator2.ViewModel
                 {
                     var displayRootRegistry = (Application.Current as App).displayRootRegistry;
 
-                    var miniViewModel = new MiniViewModel();
+                    var miniViewModel = new MiniWindowViewModel();
 
                     displayRootRegistry.ShowPresentation(miniViewModel);
 

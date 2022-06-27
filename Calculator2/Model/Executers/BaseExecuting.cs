@@ -13,6 +13,8 @@ namespace Calculator2.Model.Executers
 
         public virtual ICalculation Calculation { get; set; }
 
+        public virtual IUnaryCalculation UnaryCalculation { get; set; }
+
         public virtual INumberConvertor NumberConvertor { get; set; }
 
         public abstract void Run();

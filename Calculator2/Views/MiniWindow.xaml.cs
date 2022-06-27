@@ -23,5 +23,7 @@ namespace Calculator2.Views
         {
             InitializeComponent();
         }
+
+        private void Relocate(object sender, MouseButtonEventArgs e) => DragMove();
     }
 }

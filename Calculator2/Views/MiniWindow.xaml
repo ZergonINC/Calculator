@@ -4,14 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator2.Views"
+        xmlns:viewmodel="clr-namespace:Calculator2.ViewModel" 
         mc:Ignorable="d"
+        MouseLeftButtonDown="Relocate"
         Title="MiniWindow"
-        MouseLeftButtonDown="{Binding Relocate}"
+        WindowStartupLocation="CenterScreen"
         Background="#FAF3F3"
         WindowStyle="None"
         Height="200" 
         Width="150"
         ResizeMode="NoResize">
+    
+    <Window.DataContext>
+        <viewmodel:MiniWindowViewModel/>
+    </Window.DataContext>
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -44,7 +50,7 @@
                     TextWrapping="Wrap" 
                     FontFamily="Consolas" 
                     FontSize="24" 
-                    FontWeight="Normal" 
+                    FontWeight="Normal"
                     IsReadOnly="True"/>
 
                     <TextBlock 

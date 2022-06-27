@@ -1,6 +1,9 @@
 ﻿using Calculator2.Model;
 using Calculator2.Model.Executers;
 using Calculator2.Model.Operations;
+using Calculator2.Model.Operations.ClearOperations;
+using Calculator2.Model.Operations.ConvertorsAndValidators;
+using Calculator2.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +14,7 @@ using System.Windows.Input;
 
 namespace Calculator2.ViewModel
 {
-    public class MiniViewModel : BaseViewModel
+    public class MiniWindowViewModel : BaseViewModel
     {
         private string _miniDisplay = "0";
 
@@ -49,15 +52,27 @@ namespace Calculator2.ViewModel
             }
         }
 
+        //private string _relocate = "0";
+
+        //public string Relocate
+        //{
+        //    get { return _relocate; }
+        //    set
+        //    {
+        //        _relocate = value;
+        //        RaisePropertyChanged(nameof(Relocate));
+        //    }
+        //}
+
         BaseCalculatorModel _miniCalculator;
 
-        protected MiniViewModel _miniVeiwModel;
+        protected MiniWindowViewModel _miniVeiwModel;
 
         ParameterizedOperationExecuting miniParameterized = new();
 
         OperationExecuting miniNotParameterized = new();
 
-        public MiniViewModel()
+        public MiniWindowViewModel()
         {
             this._miniCalculator = new();
 
@@ -197,7 +212,7 @@ namespace Calculator2.ViewModel
                 {
                     var displayRootRegistry = (Application.Current as App).displayRootRegistry;
 
-                    var mainViewModel = new MainViewModel();
+                    var mainViewModel = new MainWindowViewModel();
 
                     displayRootRegistry.ShowPresentation(mainViewModel);
 

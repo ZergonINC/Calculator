@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator2.Model.Operations
+namespace Calculator2.Model.Operations.ClearOperations
 {
     public static class BackspaceClear // нужен ли обычный или все же статик?
     {

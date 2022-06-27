@@ -1,6 +1,7 @@
 ﻿using Calculator2.Interfaces;
 using Calculator2.Model.CalculationOperations;
 using Calculator2.Model.Executers;
+using Calculator2.Model.Operations.ConvertorsAndValidators;
 using Calculator2.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace Calculator2.Model.Operations
 
             Executing executing = new ExecutingBuilder()
                 .SetCalculator(_calculator)
-                .SetCalculation(new Calculation(OperationsDict.arithmeticOperations.GetValueOrDefault(arithmeticOperator)))
+                .SetCalculation(new Calculation(OperationsDictionary.arithmeticOperations.GetValueOrDefault(arithmeticOperator)))
                 .SetConvertor(new NumberConvertor()).Build();
 
             executing.Run();

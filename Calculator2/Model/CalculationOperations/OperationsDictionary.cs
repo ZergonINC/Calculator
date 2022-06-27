@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Model.CalculationOperations
 {
-    public static class OperationsDict
+    public static class OperationsDictionary
     {
         public static readonly Dictionary<string, IArithmetic> arithmeticOperations = new()
         {
@@ -16,6 +16,10 @@ namespace Calculator2.Model.CalculationOperations
             { "-", new Subtraction() },
             { "*", new Multiplication() },
             { "/", new Division() },
+            { "^", new Power() },
+            { "±", new SignChange() },
+            { "√", new SquareRoot() },
+            { "|", new Fraction() }
         };
     }
 }

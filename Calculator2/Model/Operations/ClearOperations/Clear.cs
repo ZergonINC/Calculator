@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator2.Model.Operations
+namespace Calculator2.Model.Operations.ClearOperations
 {
     public class Clear : IOperationExecuting
     {
@@ -32,13 +32,13 @@ namespace Calculator2.Model.Operations
 
             _calculator.BinaryExample.Clear();
 
-            _calculator.Result = String.Empty;
+            _calculator.Result = string.Empty;
 
-            _calculator.Operator = String.Empty;
+            _calculator.Operator = string.Empty;
 
-            _calculator.FirstOperand = String.Empty;
+            _calculator.FirstOperand = string.Empty;
 
-            _calculator.SecondOperand = String.Empty;
+            _calculator.SecondOperand = string.Empty;
 
             return "0";
         }
@@ -49,11 +49,11 @@ namespace Calculator2.Model.Operations
 
             _calculator.BinaryExample.Clear();
 
-            _calculator.FirstOperand = String.Empty;
+            _calculator.FirstOperand = string.Empty;
 
-            _calculator.SecondOperand = String.Empty;
+            _calculator.SecondOperand = string.Empty;
 
-            _calculator.Operator = String.Empty;
+            _calculator.Operator = string.Empty;
         }
     }
 }

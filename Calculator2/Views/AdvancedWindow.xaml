@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:Calculator2.Views"
         mc:Ignorable="d"
         Title="ExpressionWindow" 
+        WindowStartupLocation="CenterScreen"
         Background="#FAF3F3"
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
@@ -14,7 +15,7 @@
         Width="437">
 
     <Window.DataContext>
-        <viewmodel:ExpressionsCalculatingViewModel/>
+        <viewmodel:AdvancedWindowViewModel/>
     </Window.DataContext>
 
     <Grid>
@@ -63,10 +64,10 @@
                     FontSize="24" 
                     FontWeight="Normal" 
                     IsReadOnly="True"
-                    Text="{Binding Path=ExpressionDisplay}"/>
+                    Text="{Binding Path=AdvancedDisplay}"/>
 
                 <TextBlock   
-                Text="{Binding Path=ExpressionSecondDisplay}" 
+                Text="{Binding Path=AdvancedSecondDisplay}" 
                 FontFamily="Consolas"
                 TextWrapping="Wrap" 
                 Margin="3,3,40,30" 
@@ -99,17 +100,17 @@
                     </Grid.RowDefinitions>
 
                     <!--#region ExpressionNumber Buttons -->
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="1" Command="{Binding ExpressionNumberCommand}" CommandParameter="1" Grid.Column="0" Grid.Row="2"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="2" Command="{Binding ExpressionNumberCommand}" CommandParameter="2" Grid.Column="1" Grid.Row="2"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="3" Command="{Binding ExpressionNumberCommand}" CommandParameter="3" Grid.Column="2" Grid.Row="2"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="4" Command="{Binding ExpressionNumberCommand}" CommandParameter="4" Grid.Column="0" Grid.Row="1"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="5" Command="{Binding ExpressionNumberCommand}" CommandParameter="5" Grid.Column="1" Grid.Row="1"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="6" Command="{Binding ExpressionNumberCommand}" CommandParameter="6" Grid.Column="2" Grid.Row="1"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="7" Command="{Binding ExpressionNumberCommand}" CommandParameter="7" Grid.Column="0" Grid.Row="0"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="8" Command="{Binding ExpressionNumberCommand}" CommandParameter="8" Grid.Column="1" Grid.Row="0"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="9" Command="{Binding ExpressionNumberCommand}" CommandParameter="9" Grid.Column="2" Grid.Row="0"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="," Command="{Binding ExpressionNumberCommand}" CommandParameter="," Grid.Column="2" Grid.Row="3"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="0" Command="{Binding ExpressionNumberCommand}" CommandParameter="0" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="1" Command="{Binding AdvancedNumberCommand}" CommandParameter="1" Grid.Column="0" Grid.Row="2"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="2" Command="{Binding AdvancedNumberCommand}" CommandParameter="2" Grid.Column="1" Grid.Row="2"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="3" Command="{Binding AdvancedNumberCommand}" CommandParameter="3" Grid.Column="2" Grid.Row="2"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="4" Command="{Binding AdvancedNumberCommand}" CommandParameter="4" Grid.Column="0" Grid.Row="1"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="5" Command="{Binding AdvancedNumberCommand}" CommandParameter="5" Grid.Column="1" Grid.Row="1"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="6" Command="{Binding AdvancedNumberCommand}" CommandParameter="6" Grid.Column="2" Grid.Row="1"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="7" Command="{Binding AdvancedNumberCommand}" CommandParameter="7" Grid.Column="0" Grid.Row="0"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="8" Command="{Binding AdvancedNumberCommand}" CommandParameter="8" Grid.Column="1" Grid.Row="0"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="9" Command="{Binding AdvancedNumberCommand}" CommandParameter="9" Grid.Column="2" Grid.Row="0"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="," Command="{Binding AdvancedNumberCommand}" CommandParameter="," Grid.Column="2" Grid.Row="3"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="0" Command="{Binding AdvancedNumberCommand}" CommandParameter="0" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
                     <!--#endregion-->
                 </Grid>
 
@@ -129,17 +130,17 @@
                     </Grid.RowDefinitions>
 
                     <!--#region Memory buttons -->
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Foreground="#FF134496" Content="MC" Grid.Column="0" Grid.Row="1" Command="{Binding MemoryClearCommand}"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Foreground="#FF134496" Content="MR" Grid.Column="1" Grid.Row="1" Command="{Binding MemoryReadCommand}"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Foreground="#FF134496" Content="MS" Grid.Column="2" Grid.Row="1" Command="{Binding MemorySaveCommand}"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Foreground="#FF134496" Content="MC" Grid.Column="0" Grid.Row="1" Command="{Binding AdvancedMemoryClearCommand}"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Foreground="#FF134496" Content="MR" Grid.Column="1" Grid.Row="1" Command="{Binding AdvancedMemoryReadCommand}"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Foreground="#FF134496" Content="MS" Grid.Column="2" Grid.Row="1" Command="{Binding AdvancedMemorySaveCommand}"/>
                     <!--#endregion-->
 
                     <!--#region ExpressinArithmetic Buttons-->
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="(" Command="{Binding ExpressionLeftBracketCommand}" CommandParameter="(" Grid.Column="1" Grid.Row="2"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content=")" Command="{Binding ExpressionRightBracketCommand}" CommandParameter=")" Grid.Column="2" Grid.Row="2"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="^" Command="{Binding ExpressionArithmeticCommand}" CommandParameter="^" Grid.Column="0" Grid.Row="3"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="√" Command="{Binding ExpressionArithmeticCommand}" CommandParameter="√" Grid.Column="1" Grid.Row="3"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="±" Command="{Binding ExpressionArithmeticCommand}" CommandParameter="±" Grid.Column="2" Grid.Row="3"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="(" Command="{Binding AdvancedLeftBracketCommand}" CommandParameter="(" Grid.Column="1" Grid.Row="2"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content=")" Command="{Binding AdvancedRightBracketCommand}" CommandParameter=")" Grid.Column="2" Grid.Row="2"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="^" Command="{Binding AdvancedArithmeticCommand}" CommandParameter="^" Grid.Column="0" Grid.Row="3"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="√" Command="{Binding AdvancedArithmeticCommand}" CommandParameter="√" Grid.Column="1" Grid.Row="3"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="±" Command="{Binding AdvancedArithmeticCommand}" CommandParameter="±" Grid.Column="2" Grid.Row="3"/>
                     <!--#endregion-->
 
                     <TextBlock Background="#E1E5EA" Text="=)" FontSize="20" Grid.Column="0" Grid.Row="2"/>
@@ -162,16 +163,16 @@
                     </Grid.RowDefinitions>
 
                     <!--#region Clear buttons -->
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="20" Content="←" Command="{Binding ExpressionBackspaceCommand}" Grid.Column="0" Grid.Row="0"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="C" Command="{Binding ExpressionClearCommand}" Grid.Column="1" Grid.Row="0"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="20" Content="←" Command="{Binding AdvancedBackspaceCommand}" Grid.Column="0" Grid.Row="0"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="C" Command="{Binding AdvancedClearCommand}" Grid.Column="1" Grid.Row="0"/>
                     <!--#endregion-->
 
                     <!--#region ExpressinBaseArithmetic Buttons-->
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="*" Command="{Binding ExpressionArithmeticCommand}" CommandParameter="*" Grid.Column="0" Grid.Row="1"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="/" Command="{Binding ExpressionArithmeticCommand}" CommandParameter="/" Grid.Column="1" Grid.Row="1"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="+" Command="{Binding ExpressionArithmeticCommand}" CommandParameter="+" Grid.Column="0" Grid.Row="2"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="-" Command="{Binding ExpressionArithmeticCommand}" CommandParameter="-" Grid.Column="1" Grid.Row="2"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="25" Content="=" Command="{Binding ExpressionEquallyCommand}" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="*" Command="{Binding AdvancedArithmeticCommand}" CommandParameter="*" Grid.Column="0" Grid.Row="1"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="/" Command="{Binding AdvancedArithmeticCommand}" CommandParameter="/" Grid.Column="1" Grid.Row="1"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="+" Command="{Binding AdvancedArithmeticCommand}" CommandParameter="+" Grid.Column="0" Grid.Row="2"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="-" Command="{Binding AdvancedArithmeticCommand}" CommandParameter="-" Grid.Column="1" Grid.Row="2"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="25" Content="=" Command="{Binding AdvancedEquallyCommand}" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
                     <!--#endregion-->
                 </Grid>
             </Grid>

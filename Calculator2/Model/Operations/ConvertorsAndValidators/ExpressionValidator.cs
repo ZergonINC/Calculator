@@ -1,15 +1,13 @@
-﻿using Calculator2.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Calculator2.Model.Operations
+namespace Calculator2.Model.Operations.ConvertorsAndValidators
 {
-    public static class NumberValidator
+    public static class ExpressionValidator
     {
         private static readonly string regexPattern = @"^\d*[\.,]?\d*$";
 
@@ -17,12 +15,10 @@ namespace Calculator2.Model.Operations
 
         public static string GetValidValue(string input) => Regex.Match(input, regexPattern).Value;
 
-        public static bool IsNumeric(string input) => double.TryParse(input, out double output);
-
-        public static string GetValidNumericValue(string input)
+        public static bool ValidParentheses(string input)
         {
-            double.TryParse(input, out double output);
-            return output.ToString();
+            int c = 0;
+            return !input.Select(i => c += i == '(' ? 1 : i == ')' ? -1 : 0).Any(i => i < 0) && c == 0;
         }
     }
 }

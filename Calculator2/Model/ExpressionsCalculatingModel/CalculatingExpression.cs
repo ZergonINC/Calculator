@@ -2,6 +2,7 @@
 using Calculator2.Model.CalculationOperations;
 using Calculator2.Model.Executers;
 using Calculator2.Model.Operations;
+using Calculator2.Model.Operations.ConvertorsAndValidators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace Calculator2.Model.ExpressionsCalculatingModel
 
                     Executing executing = new ExecutingBuilder()
                         .SetCalculator(_expressionCalculator)
-                        .SetCalculation(new Calculation(OperationsDict.arithmeticOperations.GetValueOrDefault(token)))
+                        .SetCalculation(new Calculation(OperationsDictionary.arithmeticOperations.GetValueOrDefault(token)))
                         .SetConvertor(new NumberConvertor()).Build();
 
                     executing.Run();

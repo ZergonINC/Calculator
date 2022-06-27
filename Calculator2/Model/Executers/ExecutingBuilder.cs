@@ -18,11 +18,13 @@ namespace Calculator2.Model.Executers
             executing.Calculator = calculator;
             return this;
         }
+
         public ExecutingBuilder SetCalculation(ICalculation model)
         {
             executing.Calculation = model;
             return this;
         }
+
         public ExecutingBuilder SetConvertor(INumberConvertor numberConvertor)
         {
             executing.NumberConvertor = numberConvertor;

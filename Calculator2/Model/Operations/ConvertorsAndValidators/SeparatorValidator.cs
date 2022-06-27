@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator2.Model.Operations
+namespace Calculator2.Model.Operations.ConvertorsAndValidators
 {
     public static class SeparatorValidator
     {
         private static readonly char separator = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-        
+
         public static bool Check(string input) => input.Contains(',');
 
         public static string ReplaceSeparator(string input) => Check(input) ?

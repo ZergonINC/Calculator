@@ -7,9 +7,10 @@
         xmlns:viewmodel="clr-namespace:Calculator2.ViewModel" 
         x:Name="Calcul"
         Title="Calculator" 
+        WindowStartupLocation="CenterScreen"
         Background="#FAF3F3"
-        Height="322" 
-        Width="227" 
+        Height="319" 
+        Width="226" 
         WindowStyle="SingleBorderWindow" 
         WindowState="Normal" 
         HorizontalAlignment="Stretch"
@@ -17,7 +18,7 @@
         mc:Ignorable="d">
 
     <Window.DataContext>
-        <viewmodel:MainViewModel/>
+        <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
 
     <Grid>
@@ -116,8 +117,8 @@
                 <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="15" Content="-" Grid.Column="3" Grid.Row="4" Command="{Binding ArithmeticCommand}" CommandParameter="-"/>
                 <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="15" Content="+" Grid.Column="3" Grid.Row="5" Command="{Binding ArithmeticCommand}" CommandParameter="+"/>
                 <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="15" Content="√" Grid.Column="4" Grid.Row="1" Command="{Binding ArithmeticCommand}" CommandParameter="√"/>
-                <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="14" Content="x^y" Grid.Column="4" Grid.Row="2" Command="{Binding ArithmeticCommand}" CommandParameter="x^y"/>
-                <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="14" Content="1/x" Grid.Column="4" Grid.Row="3" Command="{Binding ArithmeticCommand}" CommandParameter="1/x"/>
+                <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="14" Content="x^y" Grid.Column="4" Grid.Row="2" Command="{Binding ArithmeticCommand}" CommandParameter="^"/>
+                <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="14" Content="1/x" Grid.Column="4" Grid.Row="3" Command="{Binding ArithmeticCommand}" CommandParameter="|"/>
                 <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="28" Content="=" Grid.Column="4" Grid.Row="4" Grid.RowSpan="2" Command="{Binding EquallyCommand}"/>
                 <!--#endregion-->
 
