@@ -14,6 +14,6 @@ namespace Calculator2.Interfaces
 
         string Do();
 
-        void Realize();
+        string Realize();
     }
 }

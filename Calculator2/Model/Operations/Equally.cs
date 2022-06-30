@@ -22,7 +22,7 @@ namespace Calculator2.Model.Operations
 
         public bool CanDo()
         {
-            return _calculator.BinaryExample.Count > 2 && !NumberValidator.Check(_calculator.Elements.LastOrDefault(""));
+            return _calculator.Writeback.Count > 2 && !NumberValidator.Check(_calculator.Elements.LastOrDefault(""));
         }
 
         public bool CanRealize()
@@ -32,11 +32,11 @@ namespace Calculator2.Model.Operations
 
         public string Do()
         {
-            string arithmeticOperator = _calculator.BinaryExample.Pop();
+            string arithmeticOperator = _calculator.Writeback.Pop();
 
-            _calculator.SecondOperand = _calculator.BinaryExample.Pop();
+            _calculator.SecondOperand = _calculator.Writeback.Pop();
 
-            _calculator.FirstOperand = _calculator.BinaryExample.Pop();
+            _calculator.FirstOperand = _calculator.Writeback.Pop();
 
             Executing executing = new ExecutingBuilder()
                 .SetCalculator(_calculator)
@@ -45,14 +45,27 @@ namespace Calculator2.Model.Operations
 
             executing.Run();
 
-            _calculator.BinaryExample.Push(_calculator.Result);
+            _calculator.Writeback.Push(_calculator.Result);
 
             return _calculator.Result;
         }
 
-        public void Realize()
+        public string Realize()
         {
-            //если не пригодиться удалить
+            string arithmeticOperator = _calculator.Writeback.Pop();
+
+            _calculator.FirstOperand = _calculator.Writeback.Pop();
+
+            UnaryExecuting unaryExecuting = new UnaryExecutingBuilder()
+                .SetCalculator(_calculator)
+                .SetUnaryCalculation(new UnaryCalculation(UnaryOperationsDictionary.arithmeticOperations.GetValueOrDefault(arithmeticOperator)))
+                .SetConvertor(new NumberConvertor()).Build();
+
+            unaryExecuting.Run();
+
+            _calculator.Writeback.Push(_calculator.Result);
+
+            return _calculator.Result;
         }
     }
 }

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Model.Operations.MemoryOperations
 {
-    public class MemorySave : IParameterizedOperationExecuting
+    public class MemoryRead : IOperationExecuting
     {
         BaseCalculatorModel _calculator;
 
-        public MemorySave(BaseCalculatorModel calculator)
+        public MemoryRead(BaseCalculatorModel calculator)
         {
             _calculator = calculator;
         }
@@ -21,11 +21,19 @@ namespace Calculator2.Model.Operations.MemoryOperations
             return true;
         }
 
-        public string Do(string memory)
+        public bool CanRealize()
         {
-            _calculator.Memory = memory;
+            return true;
+        }
 
+        public string Do()
+        {
             return _calculator.Memory;
+        }
+
+        public string Realize()
+        {
+            return "";//
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using Calculator2.Model;
+using Calculator2.Model.AdvancedCalculatingModel;
 using Calculator2.Model.Executers;
 using Calculator2.Model.ExpressionsCalculatingModel;
 using Calculator2.Model.Operations;
 using Calculator2.Model.Operations.ClearOperations;
 using Calculator2.Model.Operations.ConvertorsAndValidators;
+using Calculator2.Model.Operations.MemoryOperations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +39,30 @@ namespace Calculator2.ViewModel
             {
                 _advancedSecondDisplay = value;
                 RaisePropertyChanged(nameof(AdvancedSecondDisplay));
+            }
+        }
+
+        private string _advancedMemoryDisplay = "0";
+
+        public string AdvancedMemoryDisplay
+        {
+            get { return _advancedMemoryDisplay; }
+            set
+            {
+                _advancedMemoryDisplay = value;
+                RaisePropertyChanged(nameof(AdvancedMemoryDisplay));
+            }
+        }
+
+        private string _advancedBracketDisplay = "0";
+
+        public string AdvancedBracketDisplay
+        {
+            get { return _advancedBracketDisplay; }
+            set
+            {
+                _advancedBracketDisplay = value;
+                RaisePropertyChanged(nameof(AdvancedBracketDisplay));
             }
         }
 
@@ -107,10 +133,10 @@ namespace Calculator2.ViewModel
                     if (Temporary != String.Empty && Temporary.Contains(',') && Temporary[^1] == '0')//понять как валидировать в представлении и засунуть это в отдельные методы 
                         AdvancedDisplay = NumberValidator.GetValidNumericValue(Temporary);
 
-                    if ((Temporary != String.Empty || AdvancedDisplay == "0") && advancedParameterized.SetOperation(new ExpressionElements(_advancedCalculator)).CanDo())
-                    advancedParameterized.SetOperation(new ExpressionElements(_advancedCalculator)).Do(AdvancedDisplay);
+                    if ((Temporary != String.Empty || AdvancedDisplay == "0") && advancedParameterized.SetOperation(new AdvancedElements(_advancedCalculator)).CanDo())
+                    advancedParameterized.SetOperation(new AdvancedElements(_advancedCalculator)).Do(AdvancedDisplay);
 
-                    AdvancedSecondDisplay = advancedParameterized.SetOperation(new ExpressionElements(_advancedCalculator)).Do(sign);
+                    AdvancedSecondDisplay = advancedParameterized.SetOperation(new AdvancedElements(_advancedCalculator)).Do(sign);
 
                     Temporary = String.Empty;
                 }, (parameter) => Temporary != String.Empty || AdvancedDisplay == "0");
@@ -125,8 +151,11 @@ namespace Calculator2.ViewModel
                 {
                     var bracket = parameter.ToString();
 
-                    AdvancedSecondDisplay = advancedParameterized.SetOperation(new ExpressionElements(_advancedCalculator)).Do(bracket);
-                }, (parameter) => (advancedParameterized.SetOperation(new Sign(_advancedCalculator)).CanDo() || Temporary == "0") && advancedParameterized.SetOperation(new ExpressionElements(_advancedCalculator)).CanDo());
+                    AdvancedSecondDisplay = advancedParameterized.SetOperation(new AdvancedElements(_advancedCalculator)).Do(bracket);
+
+                    AdvancedBracketDisplay = BracketValidator.ValidParentheses(AdvancedSecondDisplay);
+
+                }, (parameter) => (advancedParameterized.SetOperation(new Sign(_advancedCalculator)).CanDo() || Temporary == "0") && advancedParameterized.SetOperation(new AdvancedElements(_advancedCalculator)).CanDo());
             }
         }
 
@@ -146,9 +175,11 @@ namespace Calculator2.ViewModel
                     if (Temporary.Contains(',') && Temporary[^1] == '0')
                         AdvancedDisplay = NumberValidator.GetValidNumericValue(Temporary);
 
-                    advancedParameterized.SetOperation(new ExpressionElements(_advancedCalculator)).Do(AdvancedDisplay);
+                    advancedParameterized.SetOperation(new AdvancedElements(_advancedCalculator)).Do(AdvancedDisplay);
 
-                    AdvancedSecondDisplay = advancedParameterized.SetOperation(new ExpressionElements(_advancedCalculator)).Do(bracket);
+                    AdvancedSecondDisplay = advancedParameterized.SetOperation(new AdvancedElements(_advancedCalculator)).Do(bracket);
+
+                    AdvancedBracketDisplay = BracketValidator.ValidParentheses(AdvancedSecondDisplay);
                 }, (parameter) => advancedParameterized.SetOperation(new Sign(_advancedCalculator)).CanDo());
             }
         }
@@ -159,11 +190,11 @@ namespace Calculator2.ViewModel
             {
                 return new RelayCommand((parameter) =>
                 {
-                    advancedParameterized.SetOperation(new ExpressionElements(_advancedCalculator)).Do(AdvancedDisplay);
+                    advancedParameterized.SetOperation(new AdvancedElements(_advancedCalculator)).Do(AdvancedDisplay);
 
-                    advancedNotParameterized.SetOperation(new CalculatingExpression(_advancedCalculator)).Realize();
+                    advancedNotParameterized.SetOperation(new AdvancedEqually(_advancedCalculator)).Realize();
 
-                    AdvancedDisplay = advancedNotParameterized.SetOperation(new CalculatingExpression(_advancedCalculator)).Do();
+                    AdvancedDisplay = advancedNotParameterized.SetOperation(new AdvancedEqually(_advancedCalculator)).Do();
 
                     advancedNotParameterized.SetOperation(new Clear(_advancedCalculator)).Realize();
 
@@ -202,6 +233,45 @@ namespace Calculator2.ViewModel
 
 
                 }, (parametr) => AdvancedDisplay.Length > 0 && Temporary.Length > 0);
+            }
+        }
+        #endregion
+
+        #region Memory commands
+        public ICommand MemoryClearCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    AdvancedMemoryDisplay = advancedNotParameterized.SetOperation(new MemoryClear(_advancedCalculator)).Do();
+                });
+            }
+        }
+
+        public ICommand MemoryReadCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    Temporary = advancedNotParameterized.SetOperation(new MemoryRead(_advancedCalculator)).Do();
+
+                    AdvancedDisplay = Temporary;
+                });
+            }
+        }
+
+        public ICommand MemorySaveCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    AdvancedMemoryDisplay = advancedParameterized.SetOperation(new MemorySave(_advancedCalculator)).Do(AdvancedDisplay);
+
+                    Temporary = "0";
+                });
             }
         }
         #endregion

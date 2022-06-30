@@ -17,9 +17,9 @@ namespace Calculator2.Views
     /// <summary>
     /// Логика взаимодействия для ExpressionWindow.xaml
     /// </summary>
-    public partial class ExpressionWindow : Window
+    public partial class AdvancedWindow : Window
     {
-        public ExpressionWindow()
+        public AdvancedWindow()
         {
             InitializeComponent();
         }

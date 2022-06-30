@@ -1,4 +1,4 @@
-﻿<Window x:Class="Calculator2.Views.ExpressionWindow"
+﻿<Window x:Class="Calculator2.Views.AdvancedWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -143,9 +143,9 @@
                     <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="±" Command="{Binding AdvancedArithmeticCommand}" CommandParameter="±" Grid.Column="2" Grid.Row="3"/>
                     <!--#endregion-->
 
-                    <TextBlock Background="#E1E5EA" Text="=)" FontSize="20" Grid.Column="0" Grid.Row="2"/>
+                    <TextBox Margin="3" IsReadOnly="True" FontSize="15" Background="#E1E5EA" BorderBrush="#A7BBC7" Text="{Binding AdvancedBracketDisplay}" Grid.Column="0" Grid.Row="2"/>
 
-                    <TextBlock Background="#E1E5EA" Text="999" TextAlignment="Right" FontSize="20" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"/>
+                    <TextBox Margin="3" IsReadOnly="True" FontSize="15" Background="#E1E5EA" BorderBrush="#A7BBC7" Text="{Binding AdvancedMemoryDisplay}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"/>
                 </Grid>
 
                 <Grid Grid.Column="4">

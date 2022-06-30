@@ -30,7 +30,7 @@ namespace Calculator2.Model.Operations.ClearOperations
         {
             _calculator.Elements.Clear();
 
-            _calculator.BinaryExample.Clear();
+            _calculator.Writeback.Clear();
 
             _calculator.Result = string.Empty;
 
@@ -43,17 +43,19 @@ namespace Calculator2.Model.Operations.ClearOperations
             return "0";
         }
 
-        public void Realize()
+        public string Realize()
         {
             _calculator.Elements.Clear();
 
-            _calculator.BinaryExample.Clear();
+            _calculator.Writeback.Clear();
 
             _calculator.FirstOperand = string.Empty;
 
             _calculator.SecondOperand = string.Empty;
 
             _calculator.Operator = string.Empty;
+
+            return "0";
         }
     }
 }

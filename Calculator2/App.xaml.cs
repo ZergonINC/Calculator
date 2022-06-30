@@ -22,7 +22,7 @@ namespace Calculator2
         public App()
         {
             displayRootRegistry.RegisterWindowType<MainWindowViewModel, MainWindow>();
-            displayRootRegistry.RegisterWindowType<AdvancedWindowViewModel, ExpressionWindow>();
+            displayRootRegistry.RegisterWindowType<AdvancedWindowViewModel, AdvancedWindow>();
             displayRootRegistry.RegisterWindowType<MiniWindowViewModel, MiniWindow>();
         }
 

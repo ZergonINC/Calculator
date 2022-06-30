@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Model.ExpressionsCalculatingModel
 {
-    public class ExpressionElements : IParameterizedOperationExecuting
+    public class AdvancedElements : IParameterizedOperationExecuting
     {
         BaseCalculatorModel _baseCalculatorModel;
 
-        public ExpressionElements(BaseCalculatorModel baseCalculatorModel)
+        public AdvancedElements(BaseCalculatorModel baseCalculatorModel)
         {
             _baseCalculatorModel = baseCalculatorModel;
         }

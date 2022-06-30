@@ -36,9 +36,9 @@ namespace Calculator2.Model.Executers
              return this.Operation.Do();
         }
 
-        public void Realize()
+        public string Realize()
         {
-             this.Operation.Realize();
+            return this.Operation.Realize();
         }
     }
 }

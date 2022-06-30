@@ -17,9 +17,6 @@ namespace Calculator2.Model.CalculationOperations
             { "*", new Multiplication() },
             { "/", new Division() },
             { "^", new Power() },
-            { "±", new SignChange() },
-            { "√", new SquareRoot() },
-            { "|", new Fraction() }
         };
     }
 }

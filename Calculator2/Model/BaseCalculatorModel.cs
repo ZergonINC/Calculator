@@ -19,15 +19,15 @@ namespace Calculator2.Model
             }
         }
 
-        private Stack<string> _binaryExample = new();
+        private Stack<string> _writeback = new();
 
-        public Stack<string> BinaryExample
+        public Stack<string> Writeback
         {
-            get { return _binaryExample; }
+            get { return _writeback; }
             set
             {
-                _binaryExample = value;
-                RaisePropertyChanged(nameof(BinaryExample));
+                _writeback = value;
+                RaisePropertyChanged(nameof(Writeback));
             }
         }
 
@@ -76,6 +76,18 @@ namespace Calculator2.Model
             {
                 _result = value;
                 RaisePropertyChanged(nameof(Result));
+            }
+        }
+
+        private string _memory = String.Empty;
+
+        public string Memory
+        {
+            get { return _memory; }
+            set
+            {
+                _memory = value;
+                RaisePropertyChanged(nameof(Memory));
             }
         }
     }

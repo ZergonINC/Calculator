@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Model.Operations
 {
-    public class Number : IParameterizedOperationExecuting
+    public class Numbers : IParameterizedOperationExecuting
     {
         BaseCalculatorModel _calculator;
 
-        public Number(BaseCalculatorModel calculator)
+        public Numbers(BaseCalculatorModel calculator)
         {
             _calculator = calculator;
         }
@@ -25,11 +25,11 @@ namespace Calculator2.Model.Operations
         {
             _calculator.Elements = _calculator.Elements.Append(number).ToList();
 
-            _calculator.BinaryExample.Push(number);
+            _calculator.Writeback.Push(number);
 
             if (CanDo())
             {
-                _calculator.BinaryExample.Push(_calculator.Operator);
+                _calculator.Writeback.Push(_calculator.Operator);
                 _calculator.Operator = String.Empty;
             }
 

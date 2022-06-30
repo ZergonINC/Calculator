@@ -3,6 +3,7 @@ using Calculator2.Model.Executers;
 using Calculator2.Model.Operations;
 using Calculator2.Model.Operations.ClearOperations;
 using Calculator2.Model.Operations.ConvertorsAndValidators;
+using Calculator2.Model.Operations.MemoryOperations;
 using Calculator2.Views;
 using System;
 using System.ComponentModel;
@@ -47,6 +48,18 @@ namespace Calculator2.ViewModel
             {
                 _temporary = value;
                 RaisePropertyChanged(nameof(Temporary));
+            }
+        }
+
+        private string _memoryDisplay = "0";
+
+        public string MemoryDisplay
+        {
+            get { return _memoryDisplay; }
+            set
+            {
+                _memoryDisplay = value;
+                RaisePropertyChanged(nameof(MemoryDisplay));
             }
         }
 
@@ -100,20 +113,18 @@ namespace Calculator2.ViewModel
                 {
                     var sign = parameter.ToString();
 
-                    bool TemporarilyNoEmpty = Temporary != String.Empty;
-
-                    if (TemporarilyNoEmpty && Temporary[^1] == ',')
+                    if (Temporary != String.Empty && Temporary[^1] == ',')
                         Display = Display.Remove(Display.Length - 1);
 
-                    if(TemporarilyNoEmpty && Temporary.Contains(',') && Temporary[^1] == '0')
+                    if(Temporary != String.Empty && Temporary.Contains(',') && Temporary[^1] == '0')
                         Display = NumberValidator.GetValidNumericValue(Temporary);
 
-                    if (TemporarilyNoEmpty)
-                        parameterized.SetOperation(new Number(_calculator)).Do(Display);
+                    if (Temporary != String.Empty)
+                        parameterized.SetOperation(new Numbers(_calculator)).Do(Display);
 
                     SecondDisplay = parameterized.SetOperation(new Sign(_calculator)).Do(sign);
 
-                    if (TemporarilyNoEmpty && notParameterized.SetOperation(new Equally(_calculator)).CanDo())
+                    if (Temporary != String.Empty && notParameterized.SetOperation(new Equally(_calculator)).CanDo())
                         Display = notParameterized.SetOperation(new Equally(_calculator)).Do();
 
                     Temporary = String.Empty;
@@ -121,13 +132,40 @@ namespace Calculator2.ViewModel
             }
         }
 
+
+        public ICommand UnaryArithmeticCommand
+        {
+            get
+            {
+                return new RelayCommand((parameter) =>
+                {
+                    var element = parameter.ToString();
+
+                    if ( Temporary[^1] == ',')
+                        Display = Display.Remove(Display.Length - 1);
+
+                    if ( Temporary.Contains(',') && Temporary[^1] == '0')
+                        Display = NumberValidator.GetValidNumericValue(Temporary);
+
+                    parameterized.SetOperation(new UnaryElements(_calculator)).Do(Display);
+
+                    SecondDisplay = parameterized.SetOperation(new UnaryElements(_calculator)).Do(element);
+
+                    Display = notParameterized.SetOperation(new Equally(_calculator)).Realize();//изменять шрифт чисел при достижении определенного количества
+
+                    Temporary = "0";
+                });
+            }
+        }
+
+
         public ICommand EquallyCommand
         {
             get
             {
                 return new RelayCommand((parameter) =>
                 {
-                    parameterized.SetOperation(new Number(_calculator)).Do(Display);
+                    parameterized.SetOperation(new Numbers(_calculator)).Do(Display);
 
                     Display = notParameterized.SetOperation(new Equally(_calculator)).Do();
 
@@ -192,9 +230,9 @@ namespace Calculator2.ViewModel
         {
             get
             {
-                return new RelayCommand((obj) =>
+                return new RelayCommand((parameter) =>
                 {
-
+                    MemoryDisplay = notParameterized.SetOperation(new MemoryClear(_calculator)).Do();
                 });
             }
         }
@@ -203,9 +241,11 @@ namespace Calculator2.ViewModel
         {
             get
             {
-                return new RelayCommand((obj) =>
+                return new RelayCommand((parameter) =>
                 {
+                    Temporary = notParameterized.SetOperation(new MemoryRead(_calculator)).Do();
 
+                    Display = Temporary;
                 });
             }
         }
@@ -214,31 +254,11 @@ namespace Calculator2.ViewModel
         {
             get
             {
-                return new RelayCommand((obj) =>
+                return new RelayCommand((parameter) =>
                 {
+                    MemoryDisplay = parameterized.SetOperation(new MemorySave(_calculator)).Do(Display);
 
-                });
-            }
-        }
-
-        public ICommand MemoryPlusCommand
-        {
-            get
-            {
-                return new RelayCommand((obj) =>
-                {
-
-                });
-            }
-        }
-
-        public ICommand MemoryMinusCommand
-        {
-            get
-            {
-                return new RelayCommand((obj) =>
-                {
-
+                    Temporary = "0";
                 });
             }
         }

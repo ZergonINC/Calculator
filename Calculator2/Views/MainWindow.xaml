@@ -111,14 +111,14 @@
                 <!--#endregion-->
 
                 <!--#region Arithmetic buttons -->
-                <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="15" Content="±" Grid.Column="3" Grid.Row="1" Command="{Binding ArithmeticCommand}" CommandParameter="±"/>
+                <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="15" Content="±" Grid.Column="3" Grid.Row="1" Command="{Binding UnaryArithmeticCommand}" CommandParameter="±"/>
                 <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="15" Content="/" Grid.Column="3" Grid.Row="2" Command="{Binding ArithmeticCommand}" CommandParameter="/"/>
                 <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="15" Content="*" Grid.Column="3" Grid.Row="3" Command="{Binding ArithmeticCommand}" CommandParameter="*"/>
                 <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="15" Content="-" Grid.Column="3" Grid.Row="4" Command="{Binding ArithmeticCommand}" CommandParameter="-"/>
                 <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="15" Content="+" Grid.Column="3" Grid.Row="5" Command="{Binding ArithmeticCommand}" CommandParameter="+"/>
-                <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="15" Content="√" Grid.Column="4" Grid.Row="1" Command="{Binding ArithmeticCommand}" CommandParameter="√"/>
-                <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="14" Content="x^y" Grid.Column="4" Grid.Row="2" Command="{Binding ArithmeticCommand}" CommandParameter="^"/>
-                <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="14" Content="1/x" Grid.Column="4" Grid.Row="3" Command="{Binding ArithmeticCommand}" CommandParameter="|"/>
+                <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="15" Content="√" Grid.Column="4" Grid.Row="1" Command="{Binding UnaryArithmeticCommand}" CommandParameter="√"/>
+                <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="14" Content="^" Grid.Column="4" Grid.Row="2" Command="{Binding ArithmeticCommand}" CommandParameter="^"/>
+                <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="14" Content="1/x" Grid.Column="4" Grid.Row="3" Command="{Binding UnaryArithmeticCommand}" CommandParameter="|"/>
                 <Button Style="{DynamicResource RoundedButtonStyle}" Foreground="#FF134496" FontSize="28" Content="=" Grid.Column="4" Grid.Row="4" Grid.RowSpan="2" Command="{Binding EquallyCommand}"/>
                 <!--#endregion-->
 
@@ -126,8 +126,8 @@
                 <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Foreground="#FF134496" Content="MC" Grid.Column="0" Grid.Row="0" Command="{Binding MemoryClearCommand}"/>
                 <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Foreground="#FF134496" Content="MR" Grid.Column="1" Grid.Row="0" Command="{Binding MemoryReadCommand}"/>
                 <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Foreground="#FF134496" Content="MS" Grid.Column="2" Grid.Row="0" Command="{Binding MemorySaveCommand}"/>
-                <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Foreground="#FF134496" Content="M+" Grid.Column="3" Grid.Row="0" Command="{Binding MemoryPlusCommand}"/>
-                <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Foreground="#FF134496" Content="M-" Grid.Column="4" Grid.Row="0" Command="{Binding MemoryMinusCommand}"/>
+
+                <TextBox Margin="3" IsReadOnly="True" FontSize="15" Background="#E1E5EA" BorderBrush="#A7BBC7" Text="{Binding MemoryDisplay}" Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2"/>
                 <!--#endregion-->
 
                 <!--#region Clear buttons -->

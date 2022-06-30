@@ -124,7 +124,7 @@ namespace Calculator2.ViewModel
                         MiniDisplay = NumberValidator.GetValidNumericValue(Temporary);
 
                     if (TemporarilyNoEmpty)
-                        miniParameterized.SetOperation(new Number(_miniCalculator)).Do(MiniDisplay);
+                        miniParameterized.SetOperation(new Numbers(_miniCalculator)).Do(MiniDisplay);
 
                     MiniSecondDisplay = miniParameterized.SetOperation(new Sign(_miniCalculator)).Do(sign);
 
@@ -142,7 +142,7 @@ namespace Calculator2.ViewModel
             {
                 return new RelayCommand((parameter) =>
                 {
-                    miniParameterized.SetOperation(new Number(_miniCalculator)).Do(MiniDisplay);
+                    miniParameterized.SetOperation(new Numbers(_miniCalculator)).Do(MiniDisplay);
 
                     MiniDisplay = miniNotParameterized.SetOperation(new Equally(_miniCalculator)).Do();
 
