@@ -52,17 +52,17 @@ namespace Calculator2.ViewModel
             }
         }
 
-        //private string _relocate = "0";
+        private string _relocate = "0";
 
-        //public string Relocate
-        //{
-        //    get { return _relocate; }
-        //    set
-        //    {
-        //        _relocate = value;
-        //        RaisePropertyChanged(nameof(Relocate));
-        //    }
-        //}
+        public string Relocate
+        {
+            get { return _relocate; }
+            set
+            {
+                _relocate = value;
+                RaisePropertyChanged(nameof(Relocate));
+            }
+        }
 
         BaseCalculatorModel _miniCalculator;
 
@@ -81,7 +81,7 @@ namespace Calculator2.ViewModel
 
 
         #region Base commands
-        public ICommand NumberCommand
+        public ICommand MiniNumberCommand
         {
             get
             {
@@ -107,7 +107,7 @@ namespace Calculator2.ViewModel
             }
         }
 
-        public ICommand ArithmeticCommand
+        public ICommand MiniArithmeticCommand
         {
             get
             {
@@ -136,7 +136,7 @@ namespace Calculator2.ViewModel
             }
         }
 
-        public ICommand EquallyCommand
+        public ICommand MiniEquallyCommand
         {
             get
             {
@@ -158,7 +158,7 @@ namespace Calculator2.ViewModel
 
 
         #region Clear commands
-        public ICommand ClearCommand
+        public ICommand MiniClearCommand
         {
             get
             {
@@ -173,7 +173,7 @@ namespace Calculator2.ViewModel
             }
         }
 
-        public ICommand CleanEntryCommand
+        public ICommand MiniClearEntryCommand
         {
             get
             {
@@ -186,7 +186,7 @@ namespace Calculator2.ViewModel
             }
         }
 
-        public ICommand BackspaceCommand
+        public ICommand MiniBackspaceCommand
         {
             get
             {

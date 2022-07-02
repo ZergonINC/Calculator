@@ -238,7 +238,7 @@ namespace Calculator2.ViewModel
         #endregion
 
         #region Memory commands
-        public ICommand MemoryClearCommand
+        public ICommand AdvancedMemoryClearCommand
         {
             get
             {
@@ -249,7 +249,7 @@ namespace Calculator2.ViewModel
             }
         }
 
-        public ICommand MemoryReadCommand
+        public ICommand AdvancedMemoryReadCommand
         {
             get
             {
@@ -262,7 +262,7 @@ namespace Calculator2.ViewModel
             }
         }
 
-        public ICommand MemorySaveCommand
+        public ICommand AdvancedMemorySaveCommand
         {
             get
             {

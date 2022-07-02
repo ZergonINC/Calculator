@@ -73,7 +73,7 @@
                 Margin="3,3,40,30" 
                 TextAlignment="Right"/>
 
-                <Button Background="#E1E5EA" BorderThickness="0" Content="⇲" Command="{Binding MiniCalculatorCommand}" Margin="2,2,370,60"/>
+                <Button Background="#E1E5EA" BorderThickness="0" Content="⇲" Command="{Binding MiniCalculatorCommand}" IsCancel = "true" Margin="2,2,370,60"/>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -172,10 +172,32 @@
                     <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="/" Command="{Binding AdvancedArithmeticCommand}" CommandParameter="/" Grid.Column="1" Grid.Row="1"/>
                     <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="+" Command="{Binding AdvancedArithmeticCommand}" CommandParameter="+" Grid.Column="0" Grid.Row="2"/>
                     <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="15" Content="-" Command="{Binding AdvancedArithmeticCommand}" CommandParameter="-" Grid.Column="1" Grid.Row="2"/>
-                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="25" Content="=" Command="{Binding AdvancedEquallyCommand}" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
+                    <Button Style="{DynamicResource RoundedButtonStyle}" FontSize="25" Content="=" Command="{Binding AdvancedEquallyCommand}" IsDefault = "true" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
                     <!--#endregion-->
                 </Grid>
             </Grid>
         </Grid>
     </Grid>
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding AdvancedNumberCommand}" Key="NumPad0" CommandParameter="0"/>
+        <KeyBinding Command="{Binding AdvancedNumberCommand}" Key="NumPad1" CommandParameter="1"/>
+        <KeyBinding Command="{Binding AdvancedNumberCommand}" Key="NumPad2" CommandParameter="2"/>
+        <KeyBinding Command="{Binding AdvancedNumberCommand}" Key="NumPad3" CommandParameter="3"/>
+        <KeyBinding Command="{Binding AdvancedNumberCommand}" Key="NumPad4" CommandParameter="4"/>
+        <KeyBinding Command="{Binding AdvancedNumberCommand}" Key="NumPad5" CommandParameter="5"/>
+        <KeyBinding Command="{Binding AdvancedNumberCommand}" Key="NumPad6" CommandParameter="6"/>
+        <KeyBinding Command="{Binding AdvancedNumberCommand}" Key="NumPad7" CommandParameter="7"/>
+        <KeyBinding Command="{Binding AdvancedNumberCommand}" Key="NumPad8" CommandParameter="8"/>
+        <KeyBinding Command="{Binding AdvancedNumberCommand}" Key="NumPad9" CommandParameter="9"/>
+        <KeyBinding Command="{Binding AdvancedNumberCommand}" Key="Decimal" CommandParameter=","/>
+
+        <KeyBinding Command="{Binding AdvancedArithmeticCommand}" Key="Divide" CommandParameter="/"/>
+        <KeyBinding Command="{Binding AdvancedArithmeticCommand}" Key="Multiply" CommandParameter="*"/>
+        <KeyBinding Command="{Binding AdvancedArithmeticCommand}" Key="Subtract" CommandParameter="-"/>
+        <KeyBinding Command="{Binding AdvancedArithmeticCommand}" Key="Add" CommandParameter="+"/>
+
+        <KeyBinding Command="{Binding AdvancedBackspaceCommand}" Key="Backspace"/>
+        <KeyBinding Command="{Binding AdvancedClearCommand}" Key="Delete"/>
+    </Window.InputBindings>
 </Window>
