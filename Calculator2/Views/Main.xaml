@@ -42,9 +42,7 @@
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="2">
-
-            
-
+            <Frame BorderThickness="2" BorderBrush="#A7BBC7" NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
         </Grid>
     </Grid>
 </Window>

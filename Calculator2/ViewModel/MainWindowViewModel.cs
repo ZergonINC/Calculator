@@ -5,8 +5,10 @@ using Calculator2.Model.Operations.ClearOperations;
 using Calculator2.Model.Operations.ConvertorsAndValidators;
 using Calculator2.Model.Operations.MemoryOperations;
 using Calculator2.ViewModel.Services;
+using Calculator2.Views;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Calculator2.ViewModel
@@ -60,6 +62,16 @@ namespace Calculator2.ViewModel
             }
         }
 
+        private Page _currentPage;
+        public Page CurrentPage
+        {
+            get { return _currentPage; }
+            set
+            {
+                _currentPage = value;
+                RaisePropertyChanged(nameof(CurrentPage));
+            }
+        }
 
         protected BaseCalculatorModel _calculator;
 
@@ -68,6 +80,10 @@ namespace Calculator2.ViewModel
         protected ParameterizedOperationExecuting parameterized = new();
 
         protected OperationExecuting notParameterized = new();
+
+        MainPage mainPage;
+
+        AdvancedPage advancedPage;
 
         public MainWindowViewModel()
         {
