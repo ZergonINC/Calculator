@@ -81,8 +81,6 @@ namespace Calculator2.ViewModel
 
         protected OperationExecuting notParameterized = new();
 
-        MainPage mainPage;
-
         AdvancedPage advancedPage;
 
         public MainWindowViewModel()
@@ -286,13 +284,9 @@ namespace Calculator2.ViewModel
             {
                 return new RelayCommand((parameter) =>
                 {
-                    var displayRootRegistry = (Application.Current as App).displayRootRegistry;
+                    advancedPage = new();
 
-                    var expressionsCalculatingViewModel = new AdvancedWindowViewModel();
-
-                    displayRootRegistry.ShowPresentation(expressionsCalculatingViewModel);
-
-                    displayRootRegistry.HidePresentation(_mainVeiwModel);
+                    CurrentPage = advancedPage;
                 });
             }
         }
@@ -303,13 +297,7 @@ namespace Calculator2.ViewModel
             {
                 return new RelayCommand((parameter) =>
                 {
-                    var displayRootRegistry = (Application.Current as App).displayRootRegistry;
 
-                    var miniViewModel = new MiniWindowViewModel();
-
-                    displayRootRegistry.ShowPresentation(miniViewModel);
-
-                    displayRootRegistry.HidePresentation(_mainVeiwModel);
                 });
             }
         }
