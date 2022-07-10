@@ -8,7 +8,6 @@ namespace Calculator2.Model
     public class BaseCalculatorModel : BaseViewModel, ICalculator
     {
         private List<string> _elements = new();
-
         public List<string> Elements
         {
             get { return _elements; }
@@ -19,8 +18,8 @@ namespace Calculator2.Model
             }
         }
 
-        private Stack<string> _writeback = new();
 
+        private Stack<string> _writeback = new();
         public Stack<string> Writeback
         {
             get { return _writeback; }
@@ -31,8 +30,8 @@ namespace Calculator2.Model
             }
         }
 
-        private string _firstOperand = String.Empty;
 
+        private string _firstOperand = String.Empty;
         public string FirstOperand
         {
             get { return _firstOperand; }
@@ -43,8 +42,8 @@ namespace Calculator2.Model
             }
         }
 
-        private string _secondOperand = String.Empty;
 
+        private string _secondOperand = String.Empty;
         public string SecondOperand
         {
             get { return _secondOperand; }
@@ -55,8 +54,8 @@ namespace Calculator2.Model
             }
         }
 
-        private string _operator = String.Empty;
 
+        private string _operator = String.Empty;
         public string Operator
         {
             get { return _operator; }
@@ -67,8 +66,8 @@ namespace Calculator2.Model
             }
         }
 
-        private string _result = String.Empty;
 
+        private string _result = String.Empty;
         public string Result
         {
             get { return _result; }
@@ -79,8 +78,8 @@ namespace Calculator2.Model
             }
         }
 
-        private string _memory = String.Empty;
 
+        private string _memory = String.Empty;
         public string Memory
         {
             get { return _memory; }
@@ -88,6 +87,17 @@ namespace Calculator2.Model
             {
                 _memory = value;
                 RaisePropertyChanged(nameof(Memory));
+            }
+        }
+
+        private int _bracket = 0;
+        public int Bracket
+        {
+            get { return _bracket; }
+            set
+            {
+                _bracket = value;
+                RaisePropertyChanged(nameof(Bracket));
             }
         }
     }

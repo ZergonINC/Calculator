@@ -21,5 +21,7 @@ namespace Calculator2.Interfaces
         string Result { get; set; }
 
         string Memory { get; set; }
+
+        int Bracket { get; set; }
     }
 }

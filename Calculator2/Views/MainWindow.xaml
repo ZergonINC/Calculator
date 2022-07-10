@@ -7,7 +7,6 @@
         xmlns:viewmodel="clr-namespace:Calculator2.ViewModel" 
         x:Name="Calcul"
         Title="Calculator" 
-        WindowStartupLocation="CenterScreen"
         Background="#FAF3F3"
         Height="319" 
         Width="226" 
@@ -15,6 +14,9 @@
         WindowState="Normal" 
         HorizontalAlignment="Stretch"
         ResizeMode="NoResize"
+        WindowStartupLocation="Manual"
+        Left="250"  
+        Top="250"
         mc:Ignorable="d">
 
     <Window.DataContext>

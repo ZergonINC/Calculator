@@ -26,19 +26,10 @@ namespace Calculator2.Model.Executers
         {
             return this.Operation.CanDo();
         }
-        public bool CanRealize()
-        {
-            return this.Operation.CanRealize();
-        }
 
         public string Do()
         {
              return this.Operation.Do();
-        }
-
-        public string Realize()
-        {
-            return this.Operation.Realize();
         }
     }
 }

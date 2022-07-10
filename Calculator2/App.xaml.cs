@@ -1,6 +1,7 @@
 ﻿using Calculator2.Model;
 using Calculator2.Model.Operations;
 using Calculator2.ViewModel;
+using Calculator2.ViewModel.Services;
 using Calculator2.Views;
 using System;
 using System.Collections.Generic;

@@ -3,12 +3,8 @@ using Calculator2.Model.Executers;
 using Calculator2.Model.Operations;
 using Calculator2.Model.Operations.ClearOperations;
 using Calculator2.Model.Operations.ConvertorsAndValidators;
-using Calculator2.Views;
+using Calculator2.ViewModel.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -17,7 +13,6 @@ namespace Calculator2.ViewModel
     public class MiniWindowViewModel : BaseViewModel
     {
         private string _miniDisplay = "0";
-
         public string MiniDisplay
         {
             get { return _miniDisplay; }
@@ -28,8 +23,8 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private string _miniSecondDisplay = String.Empty;
 
+        private string _miniSecondDisplay = String.Empty;
         public string MiniSecondDisplay
         {
             get { return _miniSecondDisplay; }
@@ -40,8 +35,8 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private string _temporary = "0";
 
+        private string _temporary = "0";
         public string Temporary
         {
             get { return _temporary; }
@@ -52,8 +47,8 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private string _relocate = "0";
 
+        private string _relocate = "0";
         public string Relocate
         {
             get { return _relocate; }
@@ -64,13 +59,14 @@ namespace Calculator2.ViewModel
             }
         }
 
-        BaseCalculatorModel _miniCalculator;
+
+        protected BaseCalculatorModel _miniCalculator;
 
         protected MiniWindowViewModel _miniVeiwModel;
 
-        ParameterizedOperationExecuting miniParameterized = new();
+        protected ParameterizedOperationExecuting miniParameterized = new();
 
-        OperationExecuting miniNotParameterized = new();
+        protected OperationExecuting miniNotParameterized = new();
 
         public MiniWindowViewModel()
         {
@@ -146,16 +142,15 @@ namespace Calculator2.ViewModel
 
                     MiniDisplay = miniNotParameterized.SetOperation(new Equally(_miniCalculator)).Do();
 
-                    miniNotParameterized.SetOperation(new Clear(_miniCalculator)).Realize();
+                    miniNotParameterized.SetOperation(new ClearAfterEqually(_miniCalculator)).Do();
 
                     MiniSecondDisplay = String.Empty;
 
                     Temporary = "0";
-                }, (parameter) => miniNotParameterized.SetOperation(new Equally(_miniCalculator)).CanRealize());
+                }, (parameter) => miniNotParameterized.SetOperation(new UnaryEqually(_miniCalculator)).CanDo());
             }
         }
         #endregion
-
 
         #region Clear commands
         public ICommand MiniClearCommand
@@ -203,7 +198,7 @@ namespace Calculator2.ViewModel
         }
         #endregion
 
-
+        #region Menu Command
         public ICommand CalculatorViewCommand
         {
             get
@@ -220,5 +215,6 @@ namespace Calculator2.ViewModel
                 });
             }
         }
+        #endregion
     }
 }

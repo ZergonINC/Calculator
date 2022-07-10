@@ -28,16 +28,13 @@ namespace Calculator2.Model.AdvancedCalculatingModel
             return _advancedCalculator.Operator != String.Empty;
         }
 
-        public bool CanRealize()
-        {
-            return _advancedCalculator.Elements.Count > 2;
-        }
-
         public string Do()
         {
+            List<string> RPNElements = converter.ToRPN(_advancedCalculator.Elements);
+
             Stack<string> temp = new();
 
-            foreach (var token in _advancedCalculator.Elements)
+            foreach (var token in RPNElements)
             {
                 if (!NumberValidator.Check(token))
                 {
@@ -59,15 +56,6 @@ namespace Calculator2.Model.AdvancedCalculatingModel
             _advancedCalculator.Result = temp.Pop().ToString();
 
             return _advancedCalculator.Result;
-        }
-
-        public string Realize()
-        {
-            List<string> RPNElements = converter.ToRPN(_advancedCalculator.Elements);
-
-            _advancedCalculator.Elements = RPNElements;
-
-            return "";
         }
     }
 }

@@ -21,19 +21,9 @@ namespace Calculator2.Model.Operations.MemoryOperations
             return true;
         }
 
-        public bool CanRealize()
-        {
-            return true;
-        }
-
         public string Do()
         {
             return _calculator.Memory;
-        }
-
-        public string Realize()
-        {
-            return "";//
         }
     }
 }

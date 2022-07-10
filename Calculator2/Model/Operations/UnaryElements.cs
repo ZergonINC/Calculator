@@ -28,7 +28,7 @@ namespace Calculator2.Model.Operations
 
             _calculator.Writeback.Push(element);  
 
-            return string.Join(" ", _calculator.Elements);//изменить отображение
+            return "";
         }
     }
 }

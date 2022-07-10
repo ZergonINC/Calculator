@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calculator2.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +7,26 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Model.Operations.ConvertorsAndValidators
 {
-    public static class BracketValidator
+    public class BracketValidator : IOperationExecuting
     {
-        public static string ValidParentheses(string input)//убрать статик и добавить переменную отвечающую за скобки
+        BaseCalculatorModel _calculator;
+
+        public BracketValidator(BaseCalculatorModel calculator)
         {
-            int c = 0;
-            var output = input.Select(i => c += i == '(' ? 1 : i == ')' ? -1 : 0).LastOrDefault().ToString();
+            _calculator = calculator;
+        }
 
+        public bool CanDo()
+        {
+            return _calculator.Bracket >= 0;
+        }
 
-            return output;//доделать отображение
+        public string Do()
+        {
+            _calculator.Bracket = _calculator.Elements.Select(i => _calculator.Bracket += i == "(" ? 1 : i == ")" ? -1 : 0)
+                .LastOrDefault();
+
+            return _calculator.Bracket > 0 ? "( = " + _calculator.Bracket.ToString() : "0";
         }
     }
 }

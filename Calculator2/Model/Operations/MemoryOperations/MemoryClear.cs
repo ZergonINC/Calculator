@@ -21,21 +21,11 @@ namespace Calculator2.Model.Operations.MemoryOperations
             return true;
         }
 
-        public bool CanRealize()
-        {
-            return true;
-        }
-
         public string Do()
         {
             _calculator.Memory = String.Empty;
 
             return "0";
-        }
-
-        public string Realize()
-        {
-            return "";//
         }
     }
 }

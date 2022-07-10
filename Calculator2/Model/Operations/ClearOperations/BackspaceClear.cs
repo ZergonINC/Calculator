@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Model.Operations.ClearOperations
 {
-    public static class BackspaceClear // нужен ли обычный или все же статик?
+    public static class BackspaceClear
     {
         public static bool CanDo(string input)
         {

@@ -103,7 +103,7 @@
             parameterized.SetOperation(new UnaryElements(_calculator)).Do("√");
 
             //Act
-            var actual = notParameterized.SetOperation(new Equally(_calculator)).Realize();
+            var actual = notParameterized.SetOperation(new UnaryEqually(_calculator)).Do();
 
             //Assert
             Assert.Equal(expected, actual);
@@ -119,7 +119,7 @@
             parameterized.SetOperation(new UnaryElements(_calculator)).Do("|");
 
             //Act
-            var actual = notParameterized.SetOperation(new Equally(_calculator)).Realize();
+            var actual = notParameterized.SetOperation(new UnaryEqually(_calculator)).Do();
 
             //Assert
             Assert.Equal(expected, actual);
@@ -135,7 +135,7 @@
             parameterized.SetOperation(new UnaryElements(_calculator)).Do("±");
 
             //Act
-            var actual = notParameterized.SetOperation(new Equally(_calculator)).Realize();
+            var actual = notParameterized.SetOperation(new UnaryEqually(_calculator)).Do();
 
             //Assert
             Assert.Equal(expected, actual);
@@ -160,7 +160,6 @@
             parameterized.SetOperation(new AdvancedElements(_calculator)).Do("122");
 
             //Act
-            notParameterized.SetOperation(new AdvancedEqually(_calculator)).Realize();
             var actual = notParameterized.SetOperation(new AdvancedEqually(_calculator)).Do();
 
             //Assert
@@ -184,7 +183,6 @@
             parameterized.SetOperation(new AdvancedElements(_calculator)).Do("122");
 
             //Act
-            notParameterized.SetOperation(new AdvancedEqually(_calculator)).Realize();
             var actual = notParameterized.SetOperation(new AdvancedEqually(_calculator)).Do();
 
             //Assert
@@ -208,7 +206,6 @@
             parameterized.SetOperation(new AdvancedElements(_calculator)).Do("12");
 
             //Act
-            notParameterized.SetOperation(new AdvancedEqually(_calculator)).Realize();
             var actual = notParameterized.SetOperation(new AdvancedEqually(_calculator)).Do();
 
             //Assert
@@ -232,7 +229,6 @@
             parameterized.SetOperation(new AdvancedElements(_calculator)).Do("2");
 
             //Act
-            notParameterized.SetOperation(new AdvancedEqually(_calculator)).Realize();
             var actual = notParameterized.SetOperation(new AdvancedEqually(_calculator)).Do();
 
             //Assert
@@ -253,7 +249,6 @@
 
 
             //Act
-            notParameterized.SetOperation(new AdvancedEqually(_calculator)).Realize();
             var actual = notParameterized.SetOperation(new AdvancedEqually(_calculator)).Do();
 
             //Assert
@@ -277,7 +272,6 @@
             parameterized.SetOperation(new AdvancedElements(_calculator)).Do(")");
 
             //Act
-            notParameterized.SetOperation(new AdvancedEqually(_calculator)).Realize();
             var actual = notParameterized.SetOperation(new AdvancedEqually(_calculator)).Do();
 
             //Assert
@@ -312,7 +306,6 @@
 
 
             //Act
-            notParameterized.SetOperation(new AdvancedEqually(_calculator)).Realize();
             var actual = notParameterized.SetOperation(new AdvancedEqually(_calculator)).Do();
 
             //Assert
@@ -349,7 +342,6 @@
 
 
             //Act
-            notParameterized.SetOperation(new AdvancedEqually(_calculator)).Realize();
             var actual = notParameterized.SetOperation(new AdvancedEqually(_calculator)).Do();
 
             //Assert

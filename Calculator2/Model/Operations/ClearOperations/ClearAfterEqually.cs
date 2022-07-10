@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Calculator2.Model.Operations.ClearOperations
 {
-    public class Clear : IOperationExecuting
+    public class ClearAfterEqually : IOperationExecuting
     {
         BaseCalculatorModel _calculator;
 
-        public Clear(BaseCalculatorModel calculator)
+        public ClearAfterEqually(BaseCalculatorModel calculator)
         {
             _calculator = calculator;
         }
@@ -27,13 +27,11 @@ namespace Calculator2.Model.Operations.ClearOperations
 
             _calculator.Writeback.Clear();
 
-            _calculator.Result = string.Empty;
-
-            _calculator.Operator = string.Empty;
-
             _calculator.FirstOperand = string.Empty;
 
             _calculator.SecondOperand = string.Empty;
+
+            _calculator.Operator = string.Empty;
 
             _calculator.Bracket = 0;
 

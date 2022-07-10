@@ -6,11 +6,8 @@ using Calculator2.Model.Operations;
 using Calculator2.Model.Operations.ClearOperations;
 using Calculator2.Model.Operations.ConvertorsAndValidators;
 using Calculator2.Model.Operations.MemoryOperations;
+using Calculator2.ViewModel.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -19,7 +16,6 @@ namespace Calculator2.ViewModel
     public class AdvancedWindowViewModel : BaseViewModel
     {
         private string _advancedDisplay = "0";
-
         public string AdvancedDisplay
         {
             get { return _advancedDisplay; }
@@ -30,8 +26,8 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private string _advancedSecondDisplay;
 
+        private string _advancedSecondDisplay;
         public string AdvancedSecondDisplay
         {
             get { return _advancedSecondDisplay; }
@@ -42,8 +38,8 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private string _advancedMemoryDisplay = "0";
 
+        private string _advancedMemoryDisplay = "0";
         public string AdvancedMemoryDisplay
         {
             get { return _advancedMemoryDisplay; }
@@ -54,8 +50,8 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private string _advancedBracketDisplay = "0";
 
+        private string _advancedBracketDisplay = "0";
         public string AdvancedBracketDisplay
         {
             get { return _advancedBracketDisplay; }
@@ -66,8 +62,8 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private string _temporary = "0";
 
+        private string _temporary = "0";
         public string Temporary
         {
             get { return _temporary; }
@@ -78,13 +74,14 @@ namespace Calculator2.ViewModel
             }
         }
 
-        BaseCalculatorModel _advancedCalculator;
+
+        protected BaseCalculatorModel _advancedCalculator;
 
         protected AdvancedWindowViewModel _advancedCalculatingVeiwModel;
 
-        ParameterizedOperationExecuting advancedParameterized = new();
+        protected ParameterizedOperationExecuting advancedParameterized = new();
 
-        OperationExecuting advancedNotParameterized = new();
+        protected OperationExecuting advancedNotParameterized = new();
 
         public AdvancedWindowViewModel()
         {
@@ -153,7 +150,7 @@ namespace Calculator2.ViewModel
 
                     AdvancedSecondDisplay = advancedParameterized.SetOperation(new AdvancedElements(_advancedCalculator)).Do(bracket);
 
-                    AdvancedBracketDisplay = BracketValidator.ValidParentheses(AdvancedSecondDisplay);
+                    AdvancedBracketDisplay = advancedNotParameterized.SetOperation(new BracketValidator(_advancedCalculator)).Do();
 
                 }, (parameter) => (advancedParameterized.SetOperation(new Sign(_advancedCalculator)).CanDo() || Temporary == "0") && advancedParameterized.SetOperation(new AdvancedElements(_advancedCalculator)).CanDo());
             }
@@ -179,8 +176,8 @@ namespace Calculator2.ViewModel
 
                     AdvancedSecondDisplay = advancedParameterized.SetOperation(new AdvancedElements(_advancedCalculator)).Do(bracket);
 
-                    AdvancedBracketDisplay = BracketValidator.ValidParentheses(AdvancedSecondDisplay);
-                }, (parameter) => advancedParameterized.SetOperation(new Sign(_advancedCalculator)).CanDo());
+                    AdvancedBracketDisplay = advancedNotParameterized.SetOperation(new BracketValidator(_advancedCalculator)).Do();
+                }, (parameter) => advancedNotParameterized.SetOperation(new BracketValidator(_advancedCalculator)).CanDo());
             }
         }
 
@@ -192,11 +189,9 @@ namespace Calculator2.ViewModel
                 {
                     advancedParameterized.SetOperation(new AdvancedElements(_advancedCalculator)).Do(AdvancedDisplay);
 
-                    advancedNotParameterized.SetOperation(new AdvancedEqually(_advancedCalculator)).Realize();
-
                     AdvancedDisplay = advancedNotParameterized.SetOperation(new AdvancedEqually(_advancedCalculator)).Do();
 
-                    advancedNotParameterized.SetOperation(new Clear(_advancedCalculator)).Realize();
+                    advancedNotParameterized.SetOperation(new ClearAfterEqually(_advancedCalculator)).Do();
 
                     AdvancedSecondDisplay = String.Empty;
                 });

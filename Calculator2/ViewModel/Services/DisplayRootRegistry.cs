@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Calculator2.ViewModel
+namespace Calculator2.ViewModel.Services
 {
     public class DisplayRootRegistry
     {

@@ -10,10 +10,6 @@ namespace Calculator2.Interfaces
     {
         bool CanDo();
 
-        bool CanRealize();
-
         string Do();
-
-        string Realize();
     }
 }

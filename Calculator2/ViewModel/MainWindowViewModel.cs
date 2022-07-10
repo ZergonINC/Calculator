@@ -4,11 +4,9 @@ using Calculator2.Model.Operations;
 using Calculator2.Model.Operations.ClearOperations;
 using Calculator2.Model.Operations.ConvertorsAndValidators;
 using Calculator2.Model.Operations.MemoryOperations;
-using Calculator2.Views;
+using Calculator2.ViewModel.Services;
 using System;
-using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Calculator2.ViewModel
@@ -16,7 +14,6 @@ namespace Calculator2.ViewModel
     public class MainWindowViewModel : BaseViewModel
     {
         private string _display = "0";
-
         public string Display
         {
             get { return _display; }
@@ -27,8 +24,8 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private string _secondDisplay = String.Empty;
 
+        private string _secondDisplay = String.Empty;
         public string SecondDisplay
         {
             get { return _secondDisplay; }
@@ -39,8 +36,8 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private string _temporary = "0";
 
+        private string _temporary = "0";
         public string Temporary
         {
             get { return _temporary; }
@@ -51,8 +48,8 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private string _memoryDisplay = "0";
 
+        private string _memoryDisplay = "0";
         public string MemoryDisplay
         {
             get { return _memoryDisplay; }
@@ -63,13 +60,14 @@ namespace Calculator2.ViewModel
             }
         }
 
-        BaseCalculatorModel _calculator;
+
+        protected BaseCalculatorModel _calculator;
 
         protected MainWindowViewModel _mainVeiwModel;
 
-        ParameterizedOperationExecuting parameterized = new();
+        protected ParameterizedOperationExecuting parameterized = new();
 
-        OperationExecuting notParameterized = new();
+        protected OperationExecuting notParameterized = new();
 
         public MainWindowViewModel()
         {
@@ -149,9 +147,9 @@ namespace Calculator2.ViewModel
 
                     parameterized.SetOperation(new UnaryElements(_calculator)).Do(Display);
 
-                    SecondDisplay = parameterized.SetOperation(new UnaryElements(_calculator)).Do(element);
+                    parameterized.SetOperation(new UnaryElements(_calculator)).Do(element);
 
-                    Display = notParameterized.SetOperation(new Equally(_calculator)).Realize();//изменять шрифт чисел при достижении определенного количества
+                    Display = notParameterized.SetOperation(new UnaryEqually(_calculator)).Do();//изменять шрифт чисел при достижении определенного количества
 
                     Temporary = "0";
                 });
@@ -169,12 +167,12 @@ namespace Calculator2.ViewModel
 
                     Display = notParameterized.SetOperation(new Equally(_calculator)).Do();
 
-                    notParameterized.SetOperation(new Clear(_calculator)).Realize();
+                    notParameterized.SetOperation(new ClearAfterEqually(_calculator)).Do();
 
                     SecondDisplay = String.Empty;
 
                     Temporary = "0";
-                }, (parameter) => notParameterized.SetOperation(new Equally(_calculator)).CanRealize());
+                }, (parameter) => notParameterized.SetOperation(new UnaryEqually(_calculator)).CanDo());
             }
         }
         #endregion
