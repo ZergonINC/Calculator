@@ -20,7 +20,6 @@ namespace Calculator2
     {
         public App()
         {
-
         }
     }
 }
