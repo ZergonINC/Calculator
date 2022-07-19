@@ -18,22 +18,9 @@ namespace Calculator2
     /// </summary>
     public partial class App : Application
     {
-        public DisplayRootRegistry displayRootRegistry = new();
-        MainWindowViewModel mainViewModel;
         public App()
         {
-            displayRootRegistry.RegisterWindowType<MainWindowViewModel, MainWindow>();
-            displayRootRegistry.RegisterWindowType<AdvancedWindowViewModel, AdvancedWindow>();
-            displayRootRegistry.RegisterWindowType<MiniWindowViewModel, MiniWindow>();
-        }
 
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-
-            mainViewModel = new MainWindowViewModel();
-
-            displayRootRegistry.ShowPresentation(mainViewModel);
         }
     }
 }

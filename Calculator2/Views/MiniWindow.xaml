@@ -16,11 +16,7 @@
         Height="200" 
         Width="150"
         ResizeMode="NoResize">
-    
-    <Window.DataContext>
-        <viewmodel:MiniWindowViewModel/>
-    </Window.DataContext>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>

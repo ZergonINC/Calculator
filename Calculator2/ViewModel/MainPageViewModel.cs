@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace Calculator2.ViewModel
 {
-    public class MainWindowViewModel : BaseViewModel
+    public class MainPageViewModel : BaseViewModel
     {
         private string _display = "0";
         public string Display
@@ -62,33 +62,18 @@ namespace Calculator2.ViewModel
             }
         }
 
-        private Page _currentPage;
-        public Page CurrentPage
-        {
-            get { return _currentPage; }
-            set
-            {
-                _currentPage = value;
-                RaisePropertyChanged(nameof(CurrentPage));
-            }
-        }
 
         protected BaseCalculatorModel _calculator;
-
-        protected MainWindowViewModel _mainVeiwModel;
 
         protected ParameterizedOperationExecuting parameterized = new();
 
         protected OperationExecuting notParameterized = new();
 
-        AdvancedPage advancedPage;
 
-        public MainWindowViewModel()
+        public MainPageViewModel()
         {
             this._calculator = new();
-            _mainVeiwModel = this;
         }
-
 
         #region Base commands
         public ICommand NumberCommand
@@ -98,7 +83,7 @@ namespace Calculator2.ViewModel
                 return new RelayCommand((parameter) =>
                 {
                     var number = parameter.ToString();
-                      
+
                     Temporary += number;
 
                     if (Temporary.StartsWith(","))
@@ -108,8 +93,8 @@ namespace Calculator2.ViewModel
                                 NumberValidator.GetValidValue(Temporary) :
                                 BackspaceClear.Do(Temporary); // валидировать в пердставлении
 
-                    Temporary = Temporary.Contains(',') ? 
-                                Temporary : 
+                    Temporary = Temporary.Contains(',') ?
+                                Temporary :
                                 NumberValidator.GetValidNumericValue(Temporary);
 
                     Display = Temporary;
@@ -128,7 +113,7 @@ namespace Calculator2.ViewModel
                     if (Temporary != String.Empty && Temporary[^1] == ',')
                         Display = Display.Remove(Display.Length - 1);
 
-                    if(Temporary != String.Empty && Temporary.Contains(',') && Temporary[^1] == '0')
+                    if (Temporary != String.Empty && Temporary.Contains(',') && Temporary[^1] == '0')
                         Display = NumberValidator.GetValidNumericValue(Temporary);
 
                     if (Temporary != String.Empty)
@@ -153,10 +138,10 @@ namespace Calculator2.ViewModel
                 {
                     var element = parameter.ToString();
 
-                    if ( Temporary[^1] == ',')
+                    if (Temporary[^1] == ',')
                         Display = Display.Remove(Display.Length - 1);
 
-                    if ( Temporary.Contains(',') && Temporary[^1] == '0')
+                    if (Temporary.Contains(',') && Temporary[^1] == '0')
                         Display = NumberValidator.GetValidNumericValue(Temporary);
 
                     parameterized.SetOperation(new UnaryElements(_calculator)).Do(Display);
@@ -190,7 +175,7 @@ namespace Calculator2.ViewModel
             }
         }
         #endregion
-         
+
         #region Clear commands
         public ICommand ClearCommand
         {
@@ -199,7 +184,7 @@ namespace Calculator2.ViewModel
                 return new RelayCommand((parameter) =>
                 {
                     Display = notParameterized.SetOperation(new Clear(_calculator)).Do();
-                    
+
                     Temporary = "0";
 
                     SecondDisplay = String.Empty;
@@ -275,32 +260,5 @@ namespace Calculator2.ViewModel
             }
         }
         #endregion
-
-        #region Menu commands
-
-        public ICommand ExpressionsCalculatorCommand
-        {
-            get
-            {
-                return new RelayCommand((parameter) =>
-                {
-                    advancedPage = new();
-
-                    CurrentPage = advancedPage;
-                });
-            }
-        }
-
-        public ICommand MiniCalculatorCommand
-        {
-            get
-            {
-                return new RelayCommand((parameter) =>
-                {
-
-                });
-            }
-        }
-        #endregion
-    }
+    }  
 }

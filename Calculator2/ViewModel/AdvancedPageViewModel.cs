@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace Calculator2.ViewModel
 {
-    public class AdvancedWindowViewModel : BaseViewModel
+    public class AdvancedPageViewModel : BaseViewModel
     {
         private string _advancedDisplay = "0";
         public string AdvancedDisplay
@@ -77,17 +77,13 @@ namespace Calculator2.ViewModel
 
         protected BaseCalculatorModel _advancedCalculator;
 
-        protected AdvancedWindowViewModel _advancedCalculatingVeiwModel;
-
         protected ParameterizedOperationExecuting advancedParameterized = new();
 
         protected OperationExecuting advancedNotParameterized = new();
 
-        public AdvancedWindowViewModel()
+        public AdvancedPageViewModel()
         {
             _advancedCalculator = new();
-
-            _advancedCalculatingVeiwModel = this;
         }
 
         public ICommand AdvancedNumberCommand
@@ -269,43 +265,6 @@ namespace Calculator2.ViewModel
                 });
             }
         }
-        #endregion
-
-        #region Menu commands
-
-        public ICommand MainCalculatorCommand
-        {
-            get
-            {
-                return new RelayCommand((parameter) =>
-                {
-                    var displayRootRegistry = (Application.Current as App).displayRootRegistry;
-
-                    var mainViewModel = new MainWindowViewModel();
-
-                    displayRootRegistry.ShowPresentation(mainViewModel);
-
-                    displayRootRegistry.HidePresentation(_advancedCalculatingVeiwModel);
-                });
-            }
-        }
-
-        public ICommand MiniCalculatorCommand
-        {
-            get
-            {
-                return new RelayCommand((parameter) =>
-                {
-                    var displayRootRegistry = (Application.Current as App).displayRootRegistry;
-
-                    var miniViewModel = new MiniWindowViewModel();
-
-                    displayRootRegistry.ShowPresentation(miniViewModel);
-
-                    displayRootRegistry.HidePresentation(_advancedCalculatingVeiwModel);
-                });
-            }
-        }
-        #endregion
+        #endregion  
     }
 }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator2.Views" 
         xmlns:viewmodel="clr-namespace:Calculator2.ViewModel" 
+        x:Name="Calcul"
         WindowStyle="SingleBorderWindow" 
         WindowState="Normal" 
         HorizontalAlignment="Stretch"
@@ -13,18 +14,18 @@
         WindowStartupLocation="Manual"
         Left="250"  
         Top="250"
-        Height="319" 
+        Height="322" 
         Width="226" 
         mc:Ignorable="d">
-    
+
     <Window.DataContext>
-        <viewmodel:MainWindowViewModel/>
+        <viewmodel:MainWindowVeiwModel/>
     </Window.DataContext>
     
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="190" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
 
@@ -41,14 +42,42 @@
 
                 <MenuItem Header="Вид" 
                           FontSize="14">
-                    <MenuItem FontFamily="Consolas" Header="Обычный"/>
-                    <MenuItem FontFamily="Consolas" Header="Расширенный" Command="{Binding ExpressionsCalculatorCommand}"/>
+                    <MenuItem FontFamily="Consolas" Header="Обычный"  Command="{Binding MainCalculatorCommand}">
+                        <MenuItem.Triggers>
+                            <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard TargetProperty="Width" TargetName="Calcul">
+                                            <DoubleAnimation 
+                                                To="226"                                         
+                                                Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </MenuItem.Triggers>
+                    </MenuItem>
+                    <MenuItem FontFamily="Consolas" Header="Расширенный" Command="{Binding ExpressionsCalculatorCommand}">
+                        <MenuItem.Triggers>
+                            <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard TargetProperty="Width" TargetName="Calcul">
+                                            <DoubleAnimation 
+                                                To="437"                                         
+                                                Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </MenuItem.Triggers>
+                    </MenuItem>
                 </MenuItem>
             </Menu>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="2">
-            <Frame BorderThickness="2" BorderBrush="#A7BBC7" NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
+            <Frame BorderThickness="2" NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
         </Grid>
     </Grid>
     

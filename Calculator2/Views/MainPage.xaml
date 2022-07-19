@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Calculator2.Views" 
-      xmlns:viewmodel="clr-namespace:Calculator2.ViewModel"
+      xmlns:viewmodel="clr-namespace:Calculator2.ViewModel" 
       mc:Ignorable="d"
       Background="#FAF3F3"
       Height="266" 
@@ -12,9 +12,9 @@
       Title="MainPage">
 
     <Page.DataContext>
-        <viewmodel:MainWindowViewModel/>
+        <viewmodel:MainPageViewModel/>
     </Page.DataContext>
-     
+
     <Grid>
         <Grid>
             <Grid.RowDefinitions>

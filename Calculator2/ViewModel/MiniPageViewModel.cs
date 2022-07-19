@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace Calculator2.ViewModel
 {
-    public class MiniWindowViewModel : BaseViewModel
+    public class MiniPageViewModel : BaseViewModel
     {
         private string _miniDisplay = "0";
         public string MiniDisplay
@@ -62,13 +62,13 @@ namespace Calculator2.ViewModel
 
         protected BaseCalculatorModel _miniCalculator;
 
-        protected MiniWindowViewModel _miniVeiwModel;
+        protected MiniPageViewModel _miniVeiwModel;
 
         protected ParameterizedOperationExecuting miniParameterized = new();
 
         protected OperationExecuting miniNotParameterized = new();
 
-        public MiniWindowViewModel()
+        public MiniPageViewModel()
         {
             this._miniCalculator = new();
 
@@ -207,7 +207,7 @@ namespace Calculator2.ViewModel
                 {
                     var displayRootRegistry = (Application.Current as App).displayRootRegistry;
 
-                    var mainViewModel = new MainWindowViewModel();
+                    var mainViewModel = new MainPageViewModel();
 
                     displayRootRegistry.ShowPresentation(mainViewModel);
 
