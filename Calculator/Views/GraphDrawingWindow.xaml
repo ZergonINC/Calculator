@@ -1,0 +1,120 @@
+﻿<Window x:Class="Calculator.View.GraphDrawingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator.View" 
+        xmlns:viewmodel="clr-namespace:Calculator.ViewModel"
+        mc:Ignorable="d"
+        Title="GraphDrawingWindow" 
+        Height="450" 
+        Width="800">
+
+    <Window.DataContext>
+        <viewmodel:/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <TabControl>
+                <TabItem Header="По точкам">
+                    <Grid Background="#FFE5E5E5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="0.1*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <ListView/>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <TextBox Margin="5"
+                                         Text="{Binding СoordinateX}"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <TextBox Margin="5"
+                                         Text="{Binding СoordinateY}"/>
+                            </Grid>
+
+                            <Grid Grid.Column="2">
+                                <Button Content="Добавить" 
+                                        Margin="5" 
+                                        Command="{Binding AddPoint}"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="По формуле">
+                    <Grid Background="#FFE5E5E5">
+
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Canvas x:Name="FunctionGraph">
+                <Canvas.Background>
+                    <DrawingBrush Viewport="0,0,10,10" ViewportUnits="Absolute" TileMode="Tile">
+                        <DrawingBrush.Drawing>
+                            <GeometryDrawing Brush="Black">
+                                <GeometryDrawing.Geometry>
+                                    <GeometryGroup FillRule="EvenOdd">
+                                        <RectangleGeometry Rect="0,0,50,50" />
+                                        <RectangleGeometry Rect="0,0,49,49" />
+                                    </GeometryGroup>
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Canvas.Background>
+
+                <!--Ось Y-->
+                <!--
+                <Line X1="{Binding ElementName=FunctionGraph, Path=ActualWidth, Converter={StaticResource DivideByTwo}}"
+                      Y1="0"
+                      X2="{Binding RelativeSource={RelativeSource Self}, Path=X1}"
+                      Y2="{Binding ElementName=FunctionGraph, Path=ActualHeight}"
+                      StrokeThickness="0.8"
+                      Stroke="Black"/>
+                
+                -->
+                <!--Ось X-->
+                <!--
+                <Line X1="0"
+                      Y1="{Binding ElementName=FunctionGraph, Path=ActualHeight, Converter={StaticResource DivideByTwo}}"
+                      X2="{Binding ElementName=FunctionGraph, Path=ActualWidth}"
+                      Y2="{Binding RelativeSource={RelativeSource Self}, Path=Y1}"
+                      StrokeThickness="0.8"
+                      Stroke="Black"/>-->
+
+                <Path Stroke="Red"
+                      StrokeThickness="1" 
+                      Data="{Binding DrawnShapes}">
+                    <!--<Path.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform X="{Binding ElementName=canvas, Path=ActualWidth, Converter={StaticResource DivideByTwo}}"
+                                            Y="{Binding ElementName=canvas, Path=ActualHeight, Converter={StaticResource DivideByTwo}}"/>
+                        </TransformGroup>
+                    </Path.RenderTransform>-->
+                </Path>
+            </Canvas>
+        </Grid>
+    </Grid>
+</Window>
+
