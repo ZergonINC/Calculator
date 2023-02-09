@@ -92,7 +92,7 @@ namespace Calculator.ViewModel
 
                     Temporary = NumberValidator.Check(Temporary) ?
                                 NumberValidator.GetValidValue(Temporary) :
-                                BackspaceClear.Do(Temporary); // валидировать в пердставлении
+                                BackspaceClear.Do(Temporary); 
 
                     Temporary = Temporary.Contains(',') ? 
                                 Temporary : 

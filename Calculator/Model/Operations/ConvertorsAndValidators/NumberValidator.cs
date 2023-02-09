@@ -17,8 +17,6 @@ namespace Calculator.Model.Operations.ConvertorsAndValidators
 
         public static string GetValidValue(string input) => Regex.Match(input, regexPattern).Value;
 
-        public static bool IsNumeric(string input) => double.TryParse(input, out double output);
-
         public static string GetValidNumericValue(string input)
         {
             double.TryParse(input, out double output);

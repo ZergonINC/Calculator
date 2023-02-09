@@ -1,4 +1,7 @@
-﻿namespace Calculator.Test
+﻿using Calculator.Model;
+using Calculator.Model.Executers;
+
+namespace Calculator.Test
 {
     public class CalculatorModelTests
     {
