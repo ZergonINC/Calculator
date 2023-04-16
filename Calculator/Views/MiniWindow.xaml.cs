@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +20,10 @@ namespace Calculator.Views
     /// </summary>
     public partial class MiniWindow : Window
     {
+        ILog log = LogManager.GetLogger(typeof(MainWindow));
         public MiniWindow()
         {
+            log.Info("MiniWindow - загрузка InitializeComponent()");
             InitializeComponent();
         }
 

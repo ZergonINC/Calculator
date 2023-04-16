@@ -3,6 +3,7 @@ using Calculator.Model.Operations;
 using Calculator.ViewModel;
 using Calculator.ViewModel.Services;
 using Calculator.Views;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,6 +21,7 @@ namespace Calculator
     {
         public DisplayRootRegistry displayRootRegistry = new();
         MainWindowViewModel mainViewModel;
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public App()
         {
             displayRootRegistry.RegisterWindowType<MainWindowViewModel, MainWindow>();
@@ -29,11 +31,11 @@ namespace Calculator
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
-
             mainViewModel = new MainWindowViewModel();
-
             displayRootRegistry.ShowPresentation(mainViewModel);
+            log4net.Config.XmlConfigurator.Configure();
+            Log.Info("Приложение запущено");
+            base.OnStartup(e);       
         }
     }
 }

@@ -5,6 +5,8 @@ using Calculator.Model.Operations.ClearOperations;
 using Calculator.Model.Operations.ConvertorsAndValidators;
 using Calculator.Model.Operations.MemoryOperations;
 using Calculator.ViewModel.Services;
+using Calculator.Views;
+using log4net;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -60,6 +62,7 @@ namespace Calculator.ViewModel
             }
         }
 
+        ILog log = LogManager.GetLogger(typeof(MainWindowViewModel));
 
         protected BaseCalculatorModel _calculator;
 
@@ -97,8 +100,8 @@ namespace Calculator.ViewModel
                     Temporary = Temporary.Contains(',') ? 
                                 Temporary : 
                                 NumberValidator.GetValidNumericValue(Temporary);
-
                     Display = Temporary;
+                    log.Info($"Number - {Display}");
                 });
             }
         }
@@ -123,9 +126,13 @@ namespace Calculator.ViewModel
                     SecondDisplay = parameterized.SetOperation(new Sign(_calculator)).Do(sign);
 
                     if (Temporary != String.Empty && notParameterized.SetOperation(new Equally(_calculator)).CanDo())
+                    {
                         Display = notParameterized.SetOperation(new Equally(_calculator)).Do();
+                        log.Info($"Equally - {Display}");
+                    }                      
 
                     Temporary = String.Empty;
+                    log.Info($"Arithmetic - {sign}");
                 });
             }
         }
@@ -152,6 +159,8 @@ namespace Calculator.ViewModel
                     Display = notParameterized.SetOperation(new UnaryEqually(_calculator)).Do();//изменять шрифт чисел при достижении определенного количества
 
                     Temporary = "0";
+                    log.Info($"Equally - {Display}");
+                    log.Info($"UnaryArithmetic - {element}");
                 });
             }
         }
@@ -172,6 +181,7 @@ namespace Calculator.ViewModel
                     SecondDisplay = String.Empty;
 
                     Temporary = "0";
+                    log.Info($"Equally - {Display}");
                 }, (parameter) => notParameterized.SetOperation(new UnaryEqually(_calculator)).CanDo());
             }
         }
@@ -189,6 +199,7 @@ namespace Calculator.ViewModel
                     Temporary = "0";
 
                     SecondDisplay = String.Empty;
+                    log.Info("ClearCommand");
                 });
             }
         }
@@ -202,6 +213,7 @@ namespace Calculator.ViewModel
                     Display = "0";
 
                     Temporary = "0";
+                    log.Info("ClearEntryCommand");
                 });
             }
         }
@@ -218,6 +230,7 @@ namespace Calculator.ViewModel
 
                     if (Display.Length == 0)
                         Display = "0";
+                    log.Info($"BackspaceCommand - {Display}");
                 }, (parametr) => BackspaceClear.CanDo(Display) && BackspaceClear.CanDo(Temporary));
             }
         }
@@ -231,6 +244,7 @@ namespace Calculator.ViewModel
                 return new RelayCommand((parameter) =>
                 {
                     MemoryDisplay = notParameterized.SetOperation(new MemoryClear(_calculator)).Do();
+                    log.Info("MemoryClearCommand");
                 });
             }
         }
@@ -244,6 +258,7 @@ namespace Calculator.ViewModel
                     Temporary = notParameterized.SetOperation(new MemoryRead(_calculator)).Do();
 
                     Display = Temporary;
+                    log.Info($"MemoryReadCommand - {Display}");
                 });
             }
         }
@@ -257,6 +272,8 @@ namespace Calculator.ViewModel
                     MemoryDisplay = parameterized.SetOperation(new MemorySave(_calculator)).Do(Display);
 
                     Temporary = "0";
+
+                    log.Info($"MemorySaveCommand - {MemoryDisplay}");
                 });
             }
         }
@@ -277,6 +294,7 @@ namespace Calculator.ViewModel
                     displayRootRegistry.ShowPresentation(expressionsCalculatingViewModel);
 
                     displayRootRegistry.HidePresentation(_mainVeiwModel);
+                    log.Info("Called Expressions Calculator");
                 });
             }
         }
@@ -294,6 +312,8 @@ namespace Calculator.ViewModel
                     displayRootRegistry.ShowPresentation(miniViewModel);
 
                     displayRootRegistry.HidePresentation(_mainVeiwModel);
+
+                    log.Info("Called Mini Calculator");
                 });
             }
         }
